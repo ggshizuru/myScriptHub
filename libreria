@@ -80,7 +80,7 @@ function Library:Create(xHubName,xGameName)
 
     Main.Name = "Main"
     Main.Parent = ScreenGui
-    Main.BackgroundColor3 = Color3.fromRGB(52, 73, 94 )
+    Main.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
     Main.Position = UDim2.new(0.278277636, 0, 0.281287253, 0)
     Main.Size = UDim2.new(0, 580, 0, 370)
 
@@ -90,7 +90,7 @@ function Library:Create(xHubName,xGameName)
 
     Sidebar.Name = "Sidebar"
     Sidebar.Parent = Main
-    Sidebar.BackgroundColor3 = Color3.fromRGB(52, 73, 94 )
+    Sidebar.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
     Sidebar.Size = UDim2.new(0, 140, 0, 370)
 
     SidebarCorner.Name = "SidebarCorner"
@@ -253,7 +253,7 @@ function Library:Create(xHubName,xGameName)
 
             LabelFrame.Name = tostring(Name).."_Label"
             LabelFrame.Parent = Tab
-            LabelFrame.BackgroundColor3 = Color3.fromRGB(52, 73, 94)
+            LabelFrame.BackgroundColor3 = Color3.fromRGB(55, 74, 251)
             LabelFrame.Position = UDim2.new(0.0456621014, 0, 0, 0)
             LabelFrame.Size = UDim2.new(0, 408, 0, 35)
 
@@ -262,7 +262,7 @@ function Library:Create(xHubName,xGameName)
 
             Label.Name = "Label"
             Label.Parent = LabelFrame
-            Label.BackgroundColor3 = Color3.fromRGB(52, 73, 94)
+            Label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Label.BackgroundTransparency = 1.000
             Label.BorderSizePixel = 0
             Label.Size = UDim2.new(0, 408, 0, 35)
@@ -369,13 +369,13 @@ function Library:Create(xHubName,xGameName)
 
             ToggleFrame.Name = tostring(Name).."_Toggle"
             ToggleFrame.Parent = Tab
-            ToggleFrame.BackgroundColor3 = Color3.fromRGB(40, 180, 99)
+            ToggleFrame.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
             ToggleFrame.BorderSizePixel = 0
             ToggleFrame.Size = UDim2.new(0, 408, 0, 35)
 
             ToggleName.Name = "ToggleName"
             ToggleName.Parent = ToggleFrame
-            ToggleName.BackgroundColor3 = Color3.fromRGB(170, 183, 184)
+            ToggleName.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
             ToggleName.BackgroundTransparency = 1.000
             ToggleName.BorderSizePixel = 0
             ToggleName.Size = UDim2.new(0, 347, 0, 35)
@@ -417,11 +417,11 @@ function Library:Create(xHubName,xGameName)
 
             ToggleCircle.Name = "ToggleCircle"
             ToggleCircle.Parent = ToggleF
-            ToggleCircle.BackgroundColor3 = Color3.fromRGB(40, 180, 99)
+            ToggleCircle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             ToggleCircle.BackgroundTransparency = 1.000
             ToggleCircle.Position = UDim2.new(0.093, 0,0.153, 0)
             ToggleCircle.Size = UDim2.new(0, 17, 0, 17)
-            ToggleCircle.Image = "rbxassetid://14290674733"
+            ToggleCircle.Image = "rbxassetid://3570695787"
             ToggleCircle.ScaleType = Enum.ScaleType.Slice
             ToggleCircle.SliceCenter = Rect.new(100, 100, 100, 100)
             ToggleCircle.SliceScale = 0.120

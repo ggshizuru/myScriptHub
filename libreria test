@@ -268,7 +268,7 @@ function Library:Create(xHubName,xGameName)
             Label.Size = UDim2.new(0, 408, 0, 35)
             Label.Font = Enum.Font.Gotham
             Label.Text = Name
-            Label.TextColor3 = Color3.fromRGB(255, 163, 212 )
+            Label.TextColor3 = Color3.fromRGB(13, 13, 13 )
             Label.TextSize = 16.000
 
             Label.MouseEnter:Connect(function()
